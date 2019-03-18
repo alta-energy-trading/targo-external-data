@@ -1,0 +1,23 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.dbmdl
+*.user
+
+.vs/
+**/packages/
+node_modules/
+[Bb]in/
+[Oo]bj/
+
+# Bower packages
+**/Content/lib
+
+# Build generated files
+**/Content/bundle.js
+**/Content/site.min.css
+**/Content/js/templates.js
+
+LloydImport\LLoydIntegration\LLoydIntegration.dtproj
+

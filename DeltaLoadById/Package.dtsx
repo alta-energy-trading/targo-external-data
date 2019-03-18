@@ -1,0 +1,2509 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/23/2017 5:43:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="STUKLW042A"
+  DTS:CreatorName="SOCARTRADING\heti"
+  DTS:DTSID="{6A9E01F6-E2ED-4AAE-BDC7-B35C4396B25D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="66"
+  DTS:VersionGUID="{027E24E7-6C5D-4179-BFB5-BD8B8B4EF3FC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DMZ]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{363FA58A-8567-407A-800A-2E06D8EF32A7}"
+      DTS:ObjectName="DMZ">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=STCHGS112;Initial Catalog=STG_Targo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Internal]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+      DTS:ObjectName="Internal">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=STCHGS112;Initial Catalog=STG_Targo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="The connection to the Internal Targo Database"
+      DTS:DTSID="{F7BD402E-A0B0-4F5B-AD42-4B969B4BDC63}"
+      DTS:ObjectName="connectionString"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Data Source=stchgs112;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="The DMZ server name"
+      DTS:DTSID="{BB881DD8-3E92-4170-956E-CB563BA2BA20}"
+      DTS:ObjectName="DMZ_ServerName"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">STCHGS112</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="The name of the Targo Stage Database"
+      DTS:DTSID="{FFA34C6B-3B5A-484E-803A-6A9A4E4911E9}"
+      DTS:ObjectName="DMZ_TargoStage"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">STG_Targo</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="The Internal server name"
+      DTS:DTSID="{5A0B4278-8D15-4F8B-9E31-3D451144D816}"
+      DTS:ObjectName="Internal_ServerName"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">STCHGS112</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="The name of the Targo Database"
+      DTS:DTSID="{ECDF8CF8-5B07-4810-AEAD-E7FC796F4831}"
+      DTS:ObjectName="Internal_Targo"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">STG_Targo</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="The path to the code that the package executes"
+      DTS:DTSID="{F886E732-8DB9-49CF-8B4B-998133AB5A02}"
+      DTS:ObjectName="PathToBin"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">C:\Dev\Projects.Git\Socar.Clipper\Socar.Clipper.CleanClipperData\bin\Debug</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A42AAC61-CE89-4594-9862-28EFA6D5AC9E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FetchCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Build Stem view"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f415ac1c-8675-4918-9807-048a1e756ba8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Build Stem view"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="exec sp_CurrentStems" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Clean Data"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Runs code to map ClipperData to ClipperCleanerData"
+      DTS:DTSID="{3D542708-14BA-46CC-B356-951959B0925D}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean Data"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_80ec9aaacb834d999acfe32f13cc2220"
+          VSTAMajorVersion="14"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="$Package::connectionString,$Package::PathToBin">
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_80ec9aaacb834d999acfe32f13cc2220")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_80ec9aaacb834d999acfe32f13cc2220")]
+[assembly: AssemblyCopyright("Copyright @  2017")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using System.IO;
+using System.Reflection;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+#endregion
+
+namespace ST_80ec9aaacb834d999acfe32f13cc2220
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+	    protected static string BinPath;
+
+	    /// <summary>
+	    /// This method is called when this script task executes in the control flow.
+	    /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+	    /// To open Help, press F1.
+	    /// </summary>
+	    public void Main()
+	    {
+
+	        // TODO: Add your code here
+	        BinPath = Dts.Variables["PathToBin"].Value.ToString();
+	        var targoDb = Dts.Variables["connectionString"].Value.ToString();
+
+	        try
+	        {
+	            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
+	            Assembly dll = Assembly.LoadFile(Path.Combine(BinPath, "Socar.Clipper.CleanClipperData.dll"));
+	            Type myType = dll.GetType("Socar.Clipper.CleanClipperData.CleanClipperDataService");
+
+	            myType.GetMethod("CleanData")
+	                .Invoke(null, new object[] { targoDb });
+	        }
+	        catch (Exception ex)
+	        {
+	            Dts.Events.FireError(0, "CleanClipperData", ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message
+	                , ex.InnerException?.InnerException?.StackTrace ?? ex.InnerException?.StackTrace ?? ex.StackTrace, 0);
+	        }
+
+	        Dts.TaskResult = (int)ScriptResults.Success;
+	    }
+
+	    static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+	    {
+	        if (args.Name.Contains("CleanerData"))
+	            return Assembly.LoadFile(Path.Combine(BinPath, "CleanerData.dll"));
+	        if (args.Name.Contains("Newtonsoft.Json"))
+	            return Assembly.LoadFile(Path.Combine(BinPath, "Newtonsoft.Json.dll"));
+	        if (args.Name.Contains("Socar.Clipper.Data"))
+	            return Assembly.LoadFile(Path.Combine(BinPath, "Socar.Clipper.Data.dll"));
+	        if (args.Name.Contains("EntityFramework.SqlServer"))
+	            return Assembly.LoadFile(Path.Combine(BinPath, "EntityFramework.SqlServer.dll"));
+	        if (args.Name.Contains("EntityFramework"))
+	            return Assembly.LoadFile(Path.Combine(BinPath, "EntityFramework.dll"));
+	        return null;
+	    }
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ST_80ec9aaacb834d999acfe32f13cc2220.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2A59D2A0-E9D0-4E69-BC5D-C95B9A61F8E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_80ec9aaacb834d999acfe32f13cc2220</RootNamespace>
+    <AssemblyName>ST_80ec9aaacb834d999acfe32f13cc2220</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST130</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_80ec9aaacb834d999acfe32f13cc2220</msb:CodeName>
+		<msb:DisplayName>ST_80ec9aaacb834d999acfe32f13cc2220</msb:DisplayName>
+		<msb:ProjectId>{C6DB256F-489D-461F-8907-0C1054708FD4}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_80ec9aaacb834d999acfe32f13cc2220.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_80ec9aaacb834d999acfe32f13cc2220.Properties.Settings.get_Default():ST_80ec9aaacb834d999acfe32f13cc2220.Properties.Sett" +
+    "ings")]
+
+namespace ST_80ec9aaacb834d999acfe32f13cc2220.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_80ec9aaacb834d999acfe32f13cc2220.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_80ec9aaacb834d999acfe32f13cc2220.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_80ec9aaacb834d999acfe32f13cc2220.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_80ec9aaacb834d999acfe32f13cc2220.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_80ec9aaacb834d999acfe32f13cc2220.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <BinaryItem
+            Name="ST_80ec9aaacb834d999acfe32f13cc2220.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAAsDGFoAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAAPjQA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAOwzAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAARBQAAAAgAAAAFgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAYAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAg
+NAAAAAAAAEgAAAACAAUA4CIAAFQQAAABAAAAAAAAADQzAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBgA8AQAAAQAAEQIoEAAACm8RAAAKcgEAAHBvEgAACm8T
+AAAKbxQAAAqAAQAABAIoEAAACm8RAAAKchUAAHBvEgAACm8TAAAKbxQAAAoKKBUAAAoU/gYCAAAG
+cxYAAApvFwAACn4BAAAEcjcAAHAoGAAACigZAAAKcn0AAHBvGgAACnLrAABwbxsAAAoUF40RAAAB
+JRYGom8cAAAKJt2XAAAACwIoEAAACm8dAAAKFnL/AABwB28eAAAKJS0EJhQrESgeAAAKJS0EJhQr
+BW8fAAAKJS0dJgdvHgAACiUtBCYUKwVvHwAACiUtByYHbx8AAAoHbx4AAAolLQQmFCsRKB4AAAol
+LQQmFCsFbyAAAAolLR0mB28eAAAKJS0EJhQrBW8gAAAKJS0HJgdvIAAAChZvIQAACibeAAIoEAAA
+ChZvIgAACioBEAAAAABEAFSYAJcPAAABEzACAMUAAAAAAAAAA28jAAAKciEBAHBvJAAACiwVfgEA
+AARyOQEAcCgYAAAKKBkAAAoqA28jAAAKclkBAHBvJAAACiwVfgEAAARyeQEAcCgYAAAKKBkAAAoq
+A28jAAAKcqEBAHBvJAAACiwVfgEAAARyxwEAcCgYAAAKKBkAAAoqA28jAAAKcvUBAHBvJAAACiwV
+fgEAAARyKQIAcCgYAAAKKBkAAAoqA28jAAAKcmUCAHBvJAAACiwVfgEAAARyhQIAcCgYAAAKKBkA
+AAoqFCoeAiglAAAKKh4CKCYAAAoqrn4CAAAELR5yrQIAcNADAAACKCcAAApvKAAACnMpAAAKgAIA
+AAR+AgAABCoafgMAAAQqHgKAAwAABCoafgQAAAQqHgIoKgAACioucwkAAAaABAAABCoAQlNKQgEA
+AQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAbAQAACN+AADYBAAAkAYAACNTdHJpbmdzAAAA
+AGgLAAAgAwAAI1VTAIgOAAAQAAAAI0dVSUQAAACYDgAAvAEAACNCbG9iAAAAAAAAAAIAAAFXHaIB
+CQMAAAD6ATMAFgAAAQAAACYAAAAFAAAABwAAAAoAAAADAAAAKgAAAAIAAAAQAAAAAQAAAAIAAAAD
+AAAABAAAAAEAAAAEAAAAAQAAAAEAAAAAAA0EAQAAAAAABgCDAlAFBgASA1AFBgDPAT0FDwDEBQAA
+BgD8AacEBgBmAqcEBgBHAqcEBgD5AqcEBgCjAqcEBgC8AqcEBgATAqcEBgAuAnIDCgDXArwDCgBO
+AbwDBgDCBD4EBgCHBqcEBgBhBj4EBgAZBj4EBgBFBD4EBgCyAT0FBgDuBHAFBgDXBJIEDgCCAfcD
+DgDjAfcDDgBqAX0EBgCXAVAFCgDlA7wDEgAGBuMAEgCkAOMABgBhBD4EBgD+BD4EBgCYAy4ABgAO
+AT4EBgDMBKcEBgBDAacECgASBbwDBgCOAz4EBgCtAD4EAAAAACUAAAAAAAEAAQABABAAVgQBADkA
+AQABAAAAEAB3BdMFRQACAAQAAAEQABAG0wVlAAQACAADAQAASAYAAE0ABQALABQAlQO1ABEASgS4
+ABEAMwG8ABEAgQDAAAYGVwDEAFaAOAbHAFaAEwHHAFAgAAAAAIYAXAQGAAEAqCEAAAAAkQBUA8sA
+AQB5IgAAAACGGDAFBgADAIEiAAAAAIMYMAUGAAMAiSIAAAAAkwjqBNMAAwC1IgAAAACTCBsB2AAD
+ALwiAAAAAJMIJwHdAAMAxCIAAAAAlghoBuMABADLIgAAAACGGDAFBgAEANMiAAAAAJEYNgXoAAQA
+AAABAOMEAAACACoGAAABADoDCQAwBQEAEQAwBQYAGQAwBQoAKQAwBRAAMQAwBRAAOQAwBRAAQQAw
+BRAASQAwBRAAUQAwBRAAWQAwBRAAYQAwBRAAaQAwBQYAoQAwBQYAwQAwBRUA0QAwBQYAcQBABiEA
+2QACBiYA4QA1BCsA6QAwAzEAiQCMAzUA8QBrBDkA+QAwBT4A8QBAA0QAAQEDAUoAgQDRAFAAgQAL
+AVYACQFoAF0AGQGdAGQA2QBWBmsAeQC5BHEAeQCRADUAeQByADUAIQEmBXYA2QB0BgEAkQDaADUA
+KQEvBn8AcQAwBQYAiQAwBQYACQG/AIQACQGDBo0AqQAwBZIAyQAwBQYACAAYAKsACAAcALAAKQBz
+ACMBLgALAPsALgATAAQBLgAbACMBLgAjACwBLgArAFUBLgAzAFUBLgA7AFUBLgBDACwBLgBLAFsB
+LgBTAFUBLgBbAHIBQwBjALAASQBzACMBYwBrALAAgQB7ALAAGwADAAEABAADAAAA7gTsAAAAOwHx
+AAAAbAb2AAIABQADAAIABgAFAAEABwAFAAIACAAHAASAAAABAAAAiRkFUQAAAAAAAAEAAAAEAAAA
+AAAAAAAAAACZAF8AAAAAAA0AAAAAAAAAAAAAAKIAnQMAAAAABAAAAAAAAAAAAAAAmQA+BAAAAAAN
+AAAAAAAAAAAAAACiADgAAAAAAAAAAAABAAAAgQUAAAUAAgAAAABTVF84MGVjOWFhYWNiODM0ZDk5
+OWFjZmUzMmYxM2NjMjIyMAA8TW9kdWxlPgBTeXN0ZW0uSU8ATWljcm9zb2Z0LlNxbFNlcnZlci5N
+YW5hZ2VkRFRTAHZhbHVlX18AbXNjb3JsaWIAR2V0TWV0aG9kAGdldF9TdGFja1RyYWNlAGRlZmF1
+bHRJbnN0YW5jZQBnZXRfTWVzc2FnZQBJbnZva2UAVmFyaWFibGUAUnVudGltZVR5cGVIYW5kbGUA
+R2V0VHlwZUZyb21IYW5kbGUATG9hZEZpbGUAZ2V0X05hbWUATWljcm9zb2Z0LlNxbFNlcnZlci5E
+dHMuUnVudGltZQBDb21iaW5lAEdldFR5cGUARmFpbHVyZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVy
+ZQByZXNvdXJjZUN1bHR1cmUATWV0aG9kQmFzZQBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJhc2UA
+QXBwbGljYXRpb25TZXR0aW5nc0Jhc2UARWRpdG9yQnJvd3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5l
+cmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0
+cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFz
+c2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJs
+eUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21w
+aWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3Nl
+bWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lTU2NyaXB0VGFza0VudHJ5UG9pbnRBdHRyaWJ1dGUA
+QXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAGdl
+dF9WYWx1ZQB2YWx1ZQBhZGRfQXNzZW1ibHlSZXNvbHZlAEN1cnJlbnREb21haW5fQXNzZW1ibHlS
+ZXNvbHZlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVG9TdHJpbmcAQmluUGF0aABNaWNyb3Nv
+ZnQuU3FsU2VydmVyLlNjcmlwdFRhc2sATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuVGFza3MuU2Ny
+aXB0VGFzawBTY3JpcHRPYmplY3RNb2RlbABTeXN0ZW0uQ29tcG9uZW50TW9kZWwAU1RfODBlYzlh
+YWFjYjgzNGQ5OTlhY2ZlMzJmMTNjYzIyMjAuZGxsAGdldF9JdGVtAFN5c3RlbQBFbnVtAHJlc291
+cmNlTWFuAFNjcmlwdE1haW4AQXBwRG9tYWluAGdldF9DdXJyZW50RG9tYWluAFN5c3RlbS5Db25m
+aWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5c3RlbS5SZWZsZWN0aW9uAGdldF9Jbm5l
+ckV4Y2VwdGlvbgBNZXRob2RJbmZvAEN1bHR1cmVJbmZvAHNlbmRlcgBnZXRfUmVzb3VyY2VNYW5h
+Z2VyAFJlc29sdmVFdmVudEhhbmRsZXIARXZlbnRzT2JqZWN0V3JhcHBlcgBGaXJlRXJyb3IALmN0
+b3IALmNjdG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZp
+Y2VzAFN5c3RlbS5SZXNvdXJjZXMAU1RfODBlYzlhYWFjYjgzNGQ5OTlhY2ZlMzJmMTNjYzIyMjAu
+UHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNUXzgwZWM5YWFh
+Y2I4MzRkOTk5YWNmZTMyZjEzY2MyMjIwLlByb3BlcnRpZXMAZ2V0X1ZhcmlhYmxlcwBTZXR0aW5n
+cwBSZXNvbHZlRXZlbnRBcmdzAGFyZ3MAQ29udGFpbnMAU3VjY2VzcwBnZXRfRHRzAFNjcmlwdFJl
+c3VsdHMAZ2V0X0V2ZW50cwBPYmplY3QAZ2V0X0RlZmF1bHQAc2V0X1Rhc2tSZXN1bHQAZ2V0X0Fz
+c2VtYmx5AAATUABhAHQAaABUAG8AQgBpAG4AACFjAG8AbgBuAGUAYwB0AGkAbwBuAFMAdAByAGkA
+bgBnAABFUwBvAGMAYQByAC4AQwBsAGkAcABwAGUAcgAuAEMAbABlAGEAbgBDAGwAaQBwAHAAZQBy
+AEQAYQB0AGEALgBkAGwAbAAAbVMAbwBjAGEAcgAuAEMAbABpAHAAcABlAHIALgBDAGwAZQBhAG4A
+QwBsAGkAcABwAGUAcgBEAGEAdABhAC4AQwBsAGUAYQBuAEMAbABpAHAAcABlAHIARABhAHQAYQBT
+AGUAcgB2AGkAYwBlAAATQwBsAGUAYQBuAEQAYQB0AGEAACFDAGwAZQBhAG4AQwBsAGkAcABwAGUA
+cgBEAGEAdABhAAAXQwBsAGUAYQBuAGUAcgBEAGEAdABhAAAfQwBsAGUAYQBuAGUAcgBEAGEAdABh
+AC4AZABsAGwAAB9OAGUAdwB0AG8AbgBzAG8AZgB0AC4ASgBzAG8AbgAAJ04AZQB3AHQAbwBuAHMA
+bwBmAHQALgBKAHMAbwBuAC4AZABsAGwAACVTAG8AYwBhAHIALgBDAGwAaQBwAHAAZQByAC4ARABh
+AHQAYQAALVMAbwBjAGEAcgAuAEMAbABpAHAAcABlAHIALgBEAGEAdABhAC4AZABsAGwAADNFAG4A
+dABpAHQAeQBGAHIAYQBtAGUAdwBvAHIAawAuAFMAcQBsAFMAZQByAHYAZQByAAA7RQBuAHQAaQB0
+AHkARgByAGEAbQBlAHcAbwByAGsALgBTAHEAbABTAGUAcgB2AGUAcgAuAGQAbABsAAAfRQBuAHQA
+aQB0AHkARgByAGEAbQBlAHcAbwByAGsAACdFAG4AdABpAHQAeQBGAHIAYQBtAGUAdwBvAHIAawAu
+AGQAbABsAABxUwBUAF8AOAAwAGUAYwA5AGEAYQBhAGMAYgA4ADMANABkADkAOQA5AGEAYwBmAGUA
+MwAyAGYAMQAzAGMAYwAyADIAMgAwAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQBy
+AGMAZQBzAAAA5EJn+9ZGbUaNKeSvkW4dhQAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERXQUHAg4S
+PQQgABJtBCAAEnEFIAESdRwDIAAcAyAADgQAABJ5BSACARwYBSABARJ9BQACDg4OBQABEkEOBiAB
+EoCFDgYgARKAiQ4GIAIcHB0cBSAAEoCRBCAAEj0IIAUCCA4ODggEIAECDggAARKAhRGAmQQgABJB
+BiACAQ4SQQi3elxWGTTgiQiJhF3NgIDMkQQAAAAABAEAAAACBg4DBhJVAwYSWQMGEhACBggDBhEU
+BwACEkEcEkkEAAASVQQAABJZBQABARJZBAAAEhADAAABBAgAElUECAASWQQIABIQCAEACAAAAAAA
+HgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTVF84MGVjOWFhYWNi
+ODM0ZDk5OWFjZmUzMmYxM2NjMjIyMAAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDE3AABJAQAa
+Lk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjUBAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQg
+RnJhbWV3b3JrIDQuNbQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNvdXJjZVJl
+YWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNL
+ZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291cmNl
+U2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAAAUNAAAAAAAAAAAAAAuNAAAACAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAIDQAAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQ
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
+AAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
+AAC9BO/+AAABAAAAAQAFUYkZAAABAAVRiRk/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
+AAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAw
+ADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4A
+eQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAA
+AFMAVABfADgAMABlAGMAOQBhAGEAYQBjAGIAOAAzADQAZAA5ADkAOQBhAGMAZgBlADMAMgBmADEA
+MwBjAGMAMgAyADIAMAAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2
+ADUAMwA3AC4AMgAwADcANAAxAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMA
+VABfADgAMABlAGMAOQBhAGEAYQBjAGIAOAAzADQAZAA5ADkAOQBhAGMAZgBlADMAMgBmADEAMwBj
+AGMAMgAyADIAMAAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAA
+QwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA3AAAAKgABAAEATABlAGcAYQBsAFQAcgBh
+AGQAZQBtAGEAcgBrAHMAAAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEA
+bQBlAAAAUwBUAF8AOAAwAGUAYwA5AGEAYQBhAGMAYgA4ADMANABkADkAOQA5AGEAYwBmAGUAMwAy
+AGYAMQAzAGMAYwAyADIAMgAwAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUA
+AAAAAFMAVABfADgAMABlAGMAOQBhAGEAYQBjAGIAOAAzADQAZAA5ADkAOQBhAGMAZgBlADMAMgBm
+ADEAMwBjAGMAMgAyADIAMAAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEA
+LgAwAC4ANgA1ADMANwAuADIAMAA3ADQAMQAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBl
+AHIAcwBpAG8AbgAAADEALgAwAC4ANgA1ADMANwAuADIAMAA3ADQAMQAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAABANAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CleanerData Scratch Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8175b224-d075-4098-8429-5700818041d5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CleanerData Scratch Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CleanerData Scratch Table\ClipperCleanerData"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ClipperCleanerData"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select Rownum,ClipperDataRowVersion from ClipperData</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CleanerData Scratch Table\ClipperCleanerData.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Internal]"
+                  connectionManagerRefId="Package.ConnectionManagers[Internal]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].ExternalColumns[ClipperDataRowVersion]"
+                      length="8"
+                      lineageId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]"
+                      name="ClipperDataRowVersion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[Rownum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].ExternalColumns[Rownum]"
+                      lineageId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[Rownum]"
+                      name="Rownum"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].ExternalColumns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      name="ClipperDataRowVersion" />
+                    <externalMetadataColumn
+                      refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].ExternalColumns[Rownum]"
+                      dataType="i4"
+                      name="Rownum" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[Rownum]"
+                      dataType="i4"
+                      lineageId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[Rownum]"
+                      name="Rownum" />
+                    <outputColumn
+                      refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      lineageId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ClipperDataRowVersion]"
+                      name="ClipperDataRowVersion" />
+                    <outputColumn
+                      refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CleanerData Scratch Table\Scratch Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Scratch Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ClipperData_Deletes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CleanerData Scratch Table\Scratch Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Internal]"
+                  connectionManagerRefId="Package.ConnectionManagers[Internal]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].Columns[Rownum]"
+                      cachedDataType="i4"
+                      cachedName="Rownum"
+                      externalMetadataColumnId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[RowNum]"
+                      lineageId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[Rownum]" />
+                    <inputColumn
+                      refId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].Columns[ClipperDataRowVersion]"
+                      cachedDataType="bytes"
+                      cachedLength="8"
+                      cachedName="ClipperDataRowVersion"
+                      externalMetadataColumnId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[ClipperDataRowVersion]"
+                      lineageId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[RowNum]"
+                      dataType="i4"
+                      name="RowNum" />
+                    <externalMetadataColumn
+                      refId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      name="ClipperDataRowVersion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CleanerData Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CleanerData Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CleanerData Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CleanerData Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CleanerData Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CleanerData Scratch Table.Paths[OLE DB Source Output]"
+              endId="Package\CleanerData Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\CleanerData Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete CleanerData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0a027d6f-7788-4077-9f8e-d69d15a941b0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete CleanerData"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="Delete &#xA;&#x9;ccd &#xA;From &#xA;&#x9;dbo.ClipperCleanerData ccd&#xA;&#x9;Left Outer Join dbo.ClipperData_Deletes d&#x9;&#xA;&#x9;&#x9;On&#x9;d.RowNum = ccd.RowNum&#xA;Where &#xA;&#x9;(d.RowNum IS NULL or d.ClipperDataRowVersion &lt;&gt; ccd.ClipperDataRowVersion)&#xA;Or &#xA;&#x9;ccd.Rownum in (Select&#x9;&#xA;&#x9;                    cd.RowNum &#xA;                    From&#x9;&#xA;&#x9;                    ClipperData cd&#xA;&#x9;                    Left Join &#xA;&#x9;                    (&#xA;&#x9;&#x9;                    Select&#x9;&#xA;&#x9;&#x9;&#x9;                    Imo, BblsNominal, LoadDate, Probability, RowNum, Rank() over (Partition by Imo, BblsNominal, LoadDate, Grade order by Probability desc, RowNum asc) as Rank&#xA;&#x9;&#x9;                    From&#x9;&#xA;&#x9;&#x9;&#x9;                    ClipperData&#xA;&#x9;&#x9;                    Where&#x9;&#xA;&#x9;&#x9;&#x9;                    projection = 'yes'&#xA;&#x9;                    ) tmp&#xA;&#x9;                    on cd.RowNum = tmp.RowNum&#xA;                    Where&#x9;&#xA;&#x9;                    Rank &gt; 1)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DMZ_ServerName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::DMZ_TargoStage"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7da75ff4-3114-4e99-9ef3-51882cb1bf0b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="Delete From dbo.ClipperData &#xA;Where RowNum in&#xA;(&#xA;Select cd.RowNum &#xA;From dbo.ClipperData cd&#xA;Left Outer Join dbo.ClipperData_Deletes d&#xA;On cd.RowNum = d.RowNum&#xA;Where d.RowNum IS NULL or d.ClipperDataRowVersion &lt;&gt; cd.ClipperDataRowVersion&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DMZ_ServerName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::DMZ_TargoStage"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Stem Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6a65519d-deca-4b11-9070-1f0175f5ba99}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Stem Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="WHILE 1 = 1&#xA;BEGIN&#xA;    DELETE TOP (10000) FROM dbo.Stem WHERE ID in ( &#xA;&#x9;&#x9;Select&#x9;id&#xA;&#x9;&#x9;From&#x9;dbo.Stem s&#xA;&#x9;&#x9;&#x9;&#x9;Left Outer Join dbo.ClipperData_Deletes d&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;On s.ExtRef = d.RowNum&#xA;&#x9;&#x9;Where&#x9;(d.RowNum IS NULL or d.ClipperDataRowVersion &lt;&gt; s.ClipperDataRowVersion)&#xA;&#x9;&#x9;And&#x9;&#x9;s.Source = (Select s.id from Source s left join SourceType st on st.Id = s.IdType Where s.Name = 'Clipper' and st.Name = 'Stem')&#xA;&#x9;)&#xA;    IF @@ROWCOUNT = 0&#xA;        BREAK&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DMZ_ServerName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::DMZ_TargoStage"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{DB91D0BA-115E-4381-8160-AC0BB0ABDE44}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="exec sp_ClipperData_DMZ_Internal @DMZServer=?, @DMZTargoStage=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DMZ_ServerName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::DMZ_TargoStage"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert Stem Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e21674ae-4fc8-4b70-b966-c874275f5e2b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert Stem Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="exec sp_ClipperCleanerData_Stem @Server = ?,@Targo = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::Internal_ServerName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::Internal_Targo"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="255" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Scratch Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F57EE249-9B55-458B-924D-35B1C1EC1539}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Scratch Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Scratch Table\DMZ ClipperStaging"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DMZ ClipperStaging"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select Rownum,RowVersion from ClipperStaging</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Scratch Table\DMZ ClipperStaging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DMZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[DMZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].Columns[Rownum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].ExternalColumns[Rownum]"
+                      lineageId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].Columns[Rownum]"
+                      name="Rownum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      length="8"
+                      lineageId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]"
+                      name="ClipperDataRowVersion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].ExternalColumns[Rownum]"
+                      dataType="i4"
+                      name="Rownum" />
+                    <externalMetadataColumn
+                      refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      name="RowVersion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output].Columns[Rownum]"
+                      dataType="i4"
+                      lineageId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output].Columns[Rownum]"
+                      name="Rownum" />
+                    <outputColumn
+                      refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      lineageId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      name="RowVersion" />
+                    <outputColumn
+                      refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Scratch Table\Scratch Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Scratch Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ClipperData_Deletes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Scratch Table\Scratch Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DMZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[DMZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].Columns[Rownum]"
+                      cachedDataType="i4"
+                      cachedName="Rownum"
+                      externalMetadataColumnId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[RowNum]"
+                      lineageId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].Columns[Rownum]" />
+                    <inputColumn
+                      refId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].Columns[ClipperDataRowVersion]"
+                      cachedDataType="bytes"
+                      cachedLength="8"
+                      cachedName="ClipperDataRowVersion"
+                      externalMetadataColumnId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[ClipperDataRowVersion]"
+                      lineageId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[RowNum]"
+                      dataType="i4"
+                      name="RowNum" />
+                    <externalMetadataColumn
+                      refId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      name="ClipperDataRowVersion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Scratch Table.Paths[OLE DB Source Output]"
+              endId="Package\Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Scratch Table\DMZ ClipperStaging.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stem Scratch Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{c2188e52-990c-41b3-894b-5a60c9dcf437}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stem Scratch Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stem Scratch Table\ClipperCleanerData"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ClipperCleanerData"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select ID,ClipperDataRowVersion from ClipperCleanerData</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stem Scratch Table\ClipperCleanerData.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Internal]"
+                  connectionManagerRefId="Package.ConnectionManagers[Internal]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[Rownum]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      lineageId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[Rownum]"
+                      name="Rownum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].ExternalColumns[ClipperDataRowVersion]"
+                      length="8"
+                      lineageId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]"
+                      name="ClipperDataRowVersion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].ExternalColumns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      name="ClipperDataRowVersion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      dataType="i8"
+                      lineageId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      lineageId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ClipperDataRowVersion]"
+                      name="ClipperDataRowVersion" />
+                    <outputColumn
+                      refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stem Scratch Table\Scratch Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Scratch Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ClipperData_Deletes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stem Scratch Table\Scratch Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Internal]"
+                  connectionManagerRefId="Package.ConnectionManagers[Internal]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].Columns[Rownum]"
+                      cachedDataType="i8"
+                      cachedName="Rownum"
+                      externalMetadataColumnId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[RowNum]"
+                      lineageId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[Rownum]" />
+                    <inputColumn
+                      refId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].Columns[ClipperDataRowVersion]"
+                      cachedDataType="bytes"
+                      cachedLength="8"
+                      cachedName="ClipperDataRowVersion"
+                      externalMetadataColumnId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[ClipperDataRowVersion]"
+                      lineageId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output].Columns[ClipperDataRowVersion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[RowNum]"
+                      dataType="i4"
+                      name="RowNum" />
+                    <externalMetadataColumn
+                      refId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input].ExternalColumns[ClipperDataRowVersion]"
+                      dataType="bytes"
+                      length="8"
+                      name="ClipperDataRowVersion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stem Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stem Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stem Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stem Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stem Scratch Table\Scratch Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stem Scratch Table.Paths[OLE DB Source Output]"
+              endId="Package\Stem Scratch Table\Scratch Table.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Stem Scratch Table\ClipperCleanerData.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Scratch Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{02E68A66-EB74-4417-8D4C-AE197FBA537C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Scratch Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="Truncate Table dbo.ClipperData_Deletes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Scratch Table 3"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{cef2e2b9-8107-4b45-99ca-4827d394ea0c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Scratch Table 3"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="Truncate Table dbo.ClipperData_Deletes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Scratch Table 3 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{097335af-f11f-41fb-aa62-775d2e564049}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Scratch Table 3 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{07496237-D3FD-474C-A776-D0C8FC2E6FC6}"
+          SQLTask:SqlStatementSource="Truncate Table dbo.ClipperData_Deletes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B73705E0-7C91-4F0E-96A1-DF40DD0B8398}"
+      DTS:From="Package\Truncate Scratch Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\CleanerData Scratch Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{51A48F7B-E735-4163-A20E-255924F37D1A}"
+      DTS:From="Package\Scratch Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Delete Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{C2B5FD62-59BB-479E-ACC1-D4E7D48C7929}"
+      DTS:From="Package\Delete CleanerData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Truncate Scratch Table 3 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{D59DDD07-1F31-46F5-AF4A-DE45755CAF19}"
+      DTS:From="Package\Truncate Scratch Table 3 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Clean Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{9173A6AB-BF0B-4E34-BD84-ECEED75AF67A}"
+      DTS:From="Package\Delete Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Insert Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{0BAD8C42-BD49-4E61-BE34-1CD3E7D7E5E6}"
+      DTS:From="Package\Insert Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Truncate Scratch Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{AE254911-14D3-4C77-B6DA-E8C64A87AA35}"
+      DTS:From="Package\CleanerData Scratch Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Delete CleanerData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{1FC551A1-A104-4348-A1F1-B98AC2FDDF3E}"
+      DTS:From="Package\Clean Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Stem Scratch Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{A1E47039-42D2-4FF6-A5D9-349B2078C6A4}"
+      DTS:From="Package\Stem Scratch Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Delete Stem Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{1836A68E-E9B2-4A6B-9BCA-A683F58AAAAE}"
+      DTS:From="Package\Truncate Scratch Table 3"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Build Stem view" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{55B68EB7-D950-4C12-A3B4-0D59D6A65418}"
+      DTS:From="Package\Delete Stem Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Insert Stem Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{8BCBF0C7-4800-40BB-B07A-464BC3A44253}"
+      DTS:From="Package\Insert Stem Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Truncate Scratch Table 3" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161,45"
+          Id="Package\Build Stem view"
+          TopLeft="718,375" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Clean Data"
+          TopLeft="329.166666666667,388.833333333333" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\CleanerData Scratch Table"
+          TopLeft="274,180" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Delete CleanerData"
+          TopLeft="291,248" />
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Delete Data"
+          TopLeft="33.666666666667,94.777777777778" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Delete Stem Data"
+          TopLeft="627.166666666667,133.083333333333" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Insert Data"
+          TopLeft="39,159.777777777778" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Insert Stem Data"
+          TopLeft="709.166666666667,217.083333333333" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Scratch Table"
+          TopLeft="32,28" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Stem Scratch Table"
+          TopLeft="506.166666666667,321.083333333333" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Truncate Scratch Table"
+          TopLeft="37.666666666667,232.333333333333" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Truncate Scratch Table 3"
+          TopLeft="693.166666666667,300.833333333333" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Truncate Scratch Table 3 1"
+          TopLeft="276,319" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="230.666666666667,253.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.333333333333,-52.333333333333"
+              Start="0,0"
+              End="35.833333333333,-52.333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.6666666666665,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.6666666666665,0"
+                    Point2="21.6666666666665,0"
+                    Point3="21.6666666666665,-4" />
+                  <mssgle:LineSegment
+                    End="21.6666666666665,-48.333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.6666666666665,-48.333333333333"
+                    Point2="21.6666666666665,-52.333333333333"
+                    Point3="25.6666666666665,-52.333333333333" />
+                  <mssgle:LineSegment
+                    End="35.833333333333,-52.333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="103.083333333333,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.777777777778"
+              Start="0,0"
+              End="0,17.277777777778">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.277777777778" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="376.25,290">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="375,361">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.833333333333"
+              Start="0,0"
+              End="0,20.333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="103.833333333333,136.777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23"
+              Start="0,0"
+              End="0,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="104.666666666667,201.777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.555555555555"
+              Start="0,0"
+              End="0,23.055555555555">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.055555555555" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="377,222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="415.833333333334,388.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="176.333333333333,-25.75"
+              Start="0,0"
+              End="176.333333333333,-18.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-6.48502994011976" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-6.48502994011976"
+                    Point2="0,-10.4850299401198"
+                    Point3="4,-10.4850299401198" />
+                  <mssgle:LineSegment
+                    End="172.333333333333,-10.4850299401198" />
+                  <mssgle:CubicBezierSegment
+                    Point1="172.333333333333,-10.4850299401198"
+                    Point2="176.333333333333,-10.4850299401198"
+                    Point3="176.333333333333,-14.4850299401198" />
+                  <mssgle:LineSegment
+                    End="176.333333333333,-18.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="592.166666666667,321.083333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91,-146"
+              Start="0,0"
+              End="91,-138.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-82.7536231884058" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-82.7536231884058"
+                    Point2="0,-86.7536231884058"
+                    Point3="4,-86.7536231884058" />
+                  <mssgle:LineSegment
+                    End="87,-86.7536231884058" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87,-86.7536231884058"
+                    Point2="91,-86.7536231884058"
+                    Point3="91,-90.7536231884058" />
+                  <mssgle:LineSegment
+                    End="91,-138.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="795.583333333333,342.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.166666666667"
+              Start="0,0"
+              End="0,24.666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="735.166666666667,175.083333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.5,41.9999999999999"
+              Start="0,0"
+              End="54.5,34.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.0434782608695" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.0434782608695"
+                    Point2="0,17.0434782608695"
+                    Point3="4,17.0434782608695" />
+                  <mssgle:LineSegment
+                    End="50.5,17.0434782608695" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.5,17.0434782608695"
+                    Point2="54.5,17.0434782608695"
+                    Point3="54.5,21.0434782608695" />
+                  <mssgle:LineSegment
+                    End="54.5,34.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="791.166666666667,259.083333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.75"
+              Start="0,0"
+              End="0,34.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CleanerData Scratch Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="145,42"
+          Id="Package\CleanerData Scratch Table\Scratch Table"
+          TopLeft="295,166" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\CleanerData Scratch Table\ClipperCleanerData"
+          TopLeft="283,51" />
+        <EdgeLayout
+          Id="Package\CleanerData Scratch Table.Paths[OLE DB Source Output]"
+          TopLeft="368,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CleanerData Scratch Table\ClipperCleanerData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CleanerData Scratch Table\Scratch Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Scratch Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Scratch Table\Scratch Table"
+          TopLeft="295,166" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Scratch Table\DMZ ClipperStaging"
+          TopLeft="283,51" />
+        <EdgeLayout
+          Id="Package\Scratch Table.Paths[OLE DB Source Output]"
+          TopLeft="368.75,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Scratch Table\DMZ ClipperStaging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Scratch Table\Scratch Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Stem Scratch Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Stem Scratch Table\Scratch Table"
+          TopLeft="295,166" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Stem Scratch Table\ClipperCleanerData"
+          TopLeft="283,51" />
+        <EdgeLayout
+          Id="Package\Stem Scratch Table.Paths[OLE DB Source Output]"
+          TopLeft="368,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stem Scratch Table\ClipperCleanerData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stem Scratch Table\Scratch Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
