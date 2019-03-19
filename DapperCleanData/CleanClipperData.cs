@@ -673,7 +673,7 @@ namespace DapperCleanData
             };
             
             string sqlLocation =
-                $"INSERT INTO Location (Name, Source) VALUES (@name,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int)";
+                $"IF (SELECT top 1 Id from [Location] where Name = @name AND Source = @_sourceClipper) IS NULL INSERT INTO [Location] (Name, Source) VALUES (@name,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int)";
             string sqlPort =
                     $"INSERT INTO Port (Id, Kind, IdParent) VALUES (@Id,@Kind,@portParent);";
 
@@ -683,9 +683,12 @@ namespace DapperCleanData
                 else port.Id = connection.Query<int>(sqlLocation, new { port.Name, _sourceClipper }).Single();
 
                 var portParent = (port.IdParent == null ? _portUnallocated.ToString() : port.IdParent.ToString());
-                
-                connection.Execute(sqlPort, new { port.Id , port.Kind, portParent});
-                PortsList.Add(port);
+
+                if (PortsList.Select(s => s.Id == port.Id).Count() == 0)
+                {
+                    connection.Execute(sqlPort, new { port.Id, port.Kind, portParent });
+                    PortsList.Add(port);
+                }
             }
 
             return port.Id;
@@ -699,12 +702,15 @@ namespace DapperCleanData
             };
 
             string sql =
-                $"INSERT INTO ShippingRoute (Name) VALUES (@name); SELECT CAST(SCOPE_IDENTITY() as int)";
+                $"IF (SELECT top 1 Id from [ShippingRoute] where Name = @name) IS NULL INSERT INTO ShippingRoute (Name) VALUES (@name); SELECT CAST(SCOPE_IDENTITY() as int)";
 
             using (var connection = ConnectionFactory.GetOpenConnection())
             {
                 newObj.Id = connection.Query<int>(sql, new {newObj.Name}).Single();
-                ShippingRoutesList.Add(newObj);
+                if (ShippingRoutesList.Select(s => s.Id == newObj.Id).Count() == 0)
+                {
+                    ShippingRoutesList.Add(newObj);
+                }
             }
 
             return newObj.Id;
@@ -719,12 +725,16 @@ namespace DapperCleanData
             };
 
             string sql =
-                $"INSERT INTO Grade (Name, IdParent, IdSource) VALUES (@name,@idParent,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int)";
+                $"IF (SELECT top 1 Id from [Grade] where Name = @name) IS NULL INSERT INTO Grade (Name, IdParent, IdSource) VALUES (@name,@idParent,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int)";
 
             using (var connection = ConnectionFactory.GetOpenConnection())
             {
                 newObj.Id = connection.Query<int>(sql, new {newObj.Name, newObj.IdParent, _sourceClipper }).Single();
-                GradesList.Add(newObj);
+
+                if (GradesList.Select(s => s.Id == newObj.Id).Count() == 0)
+                {
+                    GradesList.Add(newObj);
+                }
             }
 
             return newObj;
