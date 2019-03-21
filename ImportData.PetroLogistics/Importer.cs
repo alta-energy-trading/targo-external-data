@@ -475,27 +475,27 @@ namespace ImportData.PetroLogistics
         public void WriteToLog(string msg)
         {
             Debug.WriteLine(msg);
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var sql = @"INSERT INTO ImportLog (Source,Message) Values (@source,@message)";
-                var command = new SqlCommand(sql, connection);
-                command.Parameters.Add("@source", SqlDbType.VarChar);
-                command.Parameters.Add("@message", SqlDbType.VarChar);
+            //using (var connection = new SqlConnection(_connectionString))
+            //{
+            //    var sql = @"INSERT INTO ImportLog (Source,Message) Values (@source,@message)";
+            //    var command = new SqlCommand(sql, connection);
+            //    command.Parameters.Add("@source", SqlDbType.VarChar);
+            //    command.Parameters.Add("@message", SqlDbType.VarChar);
 
-                command.Parameters["@source"].Value = "PetroLogistics";
-                command.Parameters["@message"].Value = msg;
+            //    command.Parameters["@source"].Value = "PetroLogistics";
+            //    command.Parameters["@message"].Value = msg;
 
-                try
-                {
-                    connection.Open();
-                    Int32 rowsAffected = command.ExecuteNonQuery();
-                    Debug.WriteLine("Rows Affected@ {0}", rowsAffected);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
+            //    try
+            //    {
+            //        connection.Open();
+            //        Int32 rowsAffected = command.ExecuteNonQuery();
+            //        Debug.WriteLine("Rows Affected@ {0}", rowsAffected);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        throw ex;
+            //    }
+            //}
         }
     }
 }
