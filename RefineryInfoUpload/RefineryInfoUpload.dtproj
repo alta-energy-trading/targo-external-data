@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">LON-PC53</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAAAIwjoFZKwV40Q0H3ygJVjxAAAAAASAAACgAAAAEAAAABClNO2OkellsTSIE8xdc3uIAAAACeIJmVGMBSfJuJuyGhsl9noOlgRhI/8ONs/SA7jALybU3DjVCInDQAHUvkji4+iyXZdPX6QiEHfpjBHUnIb0IFk2d0LDrlFomgbYxF5PWR1dtJLXJ+Z2JlD2gNOkznOC8s8t00Oi5e8nlfTYvic+zWF52uq54BZCSCCX5yUNekXkja3BtFvqbBQAAADHbUhrkSHlFhmbBl91BloQLJMqIA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAADPsrivAYt8z0QKDJUj31zDAAAAAASAAACgAAAAEAAAAB43cGEpBCzp+TEP+ON6fXCIAAAATJNO+rN7IbulaglKZwtc/QOZYwyT7DtJQUgfEPpzOAYvc422gXvYATRMewuiwvbLLfr58ZCKZbwHxZRhK9ASFpFHTyFhknd+AVeNH4Dx89gpV/A9u4z4v2/AKvJtdnq9FZSgS6ueMOfto1fz9niZ/y9gYdFNgboZW7KWZKAlETDCvsHZ2rZaoBQAAACiomnq9wpQGJT/mJbKrizDSNdRng==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,16 +42,30 @@
                 <SSIS:Property SSIS:Name="Name">GetRefineryData</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">228</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">229</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{6743866F-0012-4676-A730-AD46AD581C28}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{51B5BC50-D7DC-4094-9040-54445010CDA2}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{A7932DFF-A526-4E15-A747-0ED61749B484}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=LON-PC53;Initial Catalog=RefineryInfo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="Database">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">{C14A197E-F699-4593-8F7A-8F6A71E3A18F}</SSIS:Property>
@@ -200,7 +214,7 @@
         <ConnectionProviderMappings />
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
-        <TargetServerVersion>SQLServer2017</TargetServerVersion>
+        <TargetServerVersion>SQLServer2016</TargetServerVersion>
         <ParameterConfigurationValues>
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>
