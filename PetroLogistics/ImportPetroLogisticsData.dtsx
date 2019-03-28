@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="7/27/2018 2:14:01 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="ImportPetroLogisticsData"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{A0CBA8F7-B07E-440A-9648-3A309FFB90F3}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{53DEF86D-6AE2-4CC8-8495-E76EBD390F92}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -36,7 +36,7 @@
       DTS:Required="True">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">Data Source=STCHGS112;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true</DTS:Property>
+        DTS:Name="ParameterValue">Data Source=Lon-PC53;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -54,7 +54,7 @@
       DTS:ObjectName="Hash">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">c5WtePpLssFsjIkJnj2jC9XhrolyXyicUWBltvEOf08m2Dq87lkgGw2OyvFwZuP7</DTS:Property>
+        DTS:Name="ParameterValue">vqDLzZiQwuKx4m7eplhguyEBZ0jMq70mDOhFG1cLQkl9xqfiPN1Fe9vBgkL8hntx</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -63,7 +63,7 @@
       DTS:ObjectName="Key">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">b15ex3kdz006p3761wdt56qi</DTS:Property>
+        DTS:Name="ParameterValue">iaut20xif17ly51xc5330n67</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -81,7 +81,7 @@
       DTS:ObjectName="Path">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">/api/movementsdata.php</DTS:Property>
+        DTS:Name="ParameterValue">/api/v2/movementsdata.php</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -90,7 +90,7 @@
       DTS:ObjectName="PathToBin">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">C:\temp\ImportData.PetroLogistics\bin</DTS:Property>
+        DTS:Name="ParameterValue">C:\temp\dlls</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -108,7 +108,7 @@
       DTS:ObjectName="Query">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">Oman_CO_2018_Present|OPEC_CN_2016|Oman_CO_2017</DTS:Property>
+        DTS:Name="ParameterValue">FSU_CO_2019_P31|FSU_CN_2019_P31|Saudi_CO_2019_Present|Iran_CO_2019_Present|Iran_CN_2019_Present|Iraq_CO_2019_Present|Kuwait_CO_2019_Present|Qatar_CO_2019_Present|Qatar_CN_2019_Present|UAE_CO_2019_Present|Oman_CO_2019_Present|</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -117,7 +117,7 @@
       DTS:ObjectName="User">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">ragarwal_http_s1BP49bfzV9M</DTS:Property>
+        DTS:Name="ParameterValue">garym_http_A0gtFsUMb234</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables />
@@ -145,45 +145,15 @@
       DTS:ExecutableType="Microsoft.ScriptTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Import Records"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <ScriptProject
           Name="ST_a49291b310c849d5ba09f0cd87e3852a"
-          VSTAMajorVersion="3"
+          VSTAMajorVersion="15"
           VSTAMinorVersion="0"
           Language="CSharp"
           ReadOnlyVariables="$Package::ConnectionString,$Package::Domain,$Package::Hash,$Package::Key,$Package::Pass,$Package::Path,$Package::PathToBin,$Package::Query,$Package::User">
-          <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_a49291b310c849d5ba09f0cd87e3852a")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_a49291b310c849d5ba09f0cd87e3852a")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -304,6 +274,35 @@ using System.Runtime.CompilerServices;
   </resheader>
 </root>]]></ProjectItem>
           <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_a49291b310c849d5ba09f0cd87e3852a.Properties.Settings.get_Default():ST_a49291b310c849d5ba09f0cd87e3852a.Properties.Sett" +
+    "ings")]
+
+namespace ST_a49291b310c849d5ba09f0cd87e3852a.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
             Name="ST_a49291b310c849d5ba09f0cd87e3852a.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -318,7 +317,7 @@ using System.Runtime.CompilerServices;
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ST_a49291b310c849d5ba09f0cd87e3852a</RootNamespace>
     <AssemblyName>ST_a49291b310c849d5ba09f0cd87e3852a</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
     <TargetFrameworkProfile></TargetFrameworkProfile>
@@ -347,8 +346,8 @@ using System.Runtime.CompilerServices;
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
@@ -383,7 +382,7 @@ using System.Runtime.CompilerServices;
         <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
         <Host Name="ScriptTask" />
         <ProjectClient>
-          <HostIdentifier>SSIS_ST120</HostIdentifier>
+          <HostIdentifier>SSIS_ST140</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
@@ -547,51 +546,52 @@ namespace ST_a49291b310c849d5ba09f0cd87e3852a
             Name="Project"
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
-		<msb:CodeName>ST_a49291b310c849d5ba09f0cd87e3852a</msb:CodeName>
-		<msb:DisplayName>ST_a49291b310c849d5ba09f0cd87e3852a</msb:DisplayName>
-		<msb:ProjectId>{E3F1B8BD-03C7-47D6-8413-232488D0AB23}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="ST_a49291b310c849d5ba09f0cd87e3852a.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ScriptMain.cs"/>
-	</msb:ItemGroup>
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_a49291b310c849d5ba09f0cd87e3852a</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_a49291b310c849d5ba09f0cd87e3852a</msb:DisplayName>
+    <msb:ProjectId>{504AD5FF-9870-4BD5-AC66-26F9D9642F76}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_a49291b310c849d5ba09f0cd87e3852a.csproj" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_a49291b310c849d5ba09f0cd87e3852a")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_a49291b310c849d5ba09f0cd87e3852a")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_a49291b310c849d5ba09f0cd87e3852a.Properties.Settings.get_Default():ST_a49291b310c849d5ba09f0cd87e3852a.Properties.Sett" +
-    "ings")]
-
-namespace ST_a49291b310c849d5ba09f0cd87e3852a.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Settings.settings"
             Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -672,8 +672,8 @@ namespace ST_a49291b310c849d5ba09f0cd87e3852a.Properties {
           <BinaryItem
             Name="ST_a49291b310c849d5ba09f0cd87e3852a.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDANx/YFsAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAA8jQA
-AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIGVnFwAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAA8jQA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAKA0AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA+BQAAAAgAAAAFgAAAAIA
@@ -715,8 +715,8 @@ ADwAIQEmBX0A2QB0BgEAkQDaADwAKQEvBoYAcQAwBQYAiQAwBQYACQG/AIsACQGDBpQAqQAwBZkA
 yQAwBQYACAAYALIACAAcALcAKQBzACoBLgALAAIBLgATAAsBLgAbACoBLgAjADMBLgArAFwBLgAz
 AFwBLgA7AFwBLgBDADMBLgBLAGIBLgBTAFwBLgBbAHkBQwBjALcASQBzACoBYwBrALcAgQB7ALcA
 GwADAAEABAADAAAA7gTzAAAAOwH4AAAAbAb9AAIABQADAAIABgAFAAEABwAFAAIACAAHAASAAAAB
-AAAAghq2cwAAAAAAADsAAAAEAAAAAAAAAAAAAACgAF8AAAAAAAwAAAAAAAAAAAAAAKkAnQMAAAAA
-BAAAAAAAAAAAAAAAoAA+BAAAAAAMAAAAAAAAAAAAAACpABQAAAAAAAAAAAABAAAAgQUAAAUAAgAA
+AAAAchuAQwAAAAAAADsAAAAEAAAAAAAAAAAAAACgAF8AAAAAAA4AAAAAAAAAAAAAAKkAnQMAAAAA
+BAAAAAAAAAAAAAAAoAA+BAAAAAAOAAAAAAAAAAAAAACpABQAAAAAAAAAAAABAAAAgQUAAAUAAgAA
 AAA8TW9kdWxlPgBTeXN0ZW0uSU8ATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAHZhbHVl
 X18AU1RfYTQ5MjkxYjMxMGM4NDlkNWJhMDlmMGNkODdlMzg1MmEAbXNjb3JsaWIAR2V0TWV0aG9k
 AGdldF9TdGFja1RyYWNlAGRlZmF1bHRJbnN0YW5jZQBnZXRfTWVzc2FnZQBJbnZva2UAVmFyaWFi
@@ -760,15 +760,15 @@ bgBlAGQAACtGAGEAcwB0AE0AZQBtAGIAZQByAC4AUwBpAGcAbgBlAGQALgBkAGwAbAAAH04AZQB3
 AHQAbwBuAHMAbwBmAHQALgBKAHMAbwBuAAAnTgBlAHcAdABvAG4AcwBvAGYAdAAuAEoAcwBvAG4A
 LgBkAGwAbAAAcVMAVABfAGEANAA5ADIAOQAxAGIAMwAxADAAYwA4ADQAOQBkADUAYgBhADAAOQBm
 ADAAYwBkADgANwBlADMAOAA1ADIAYQAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUA
-cgBjAGUAcwAAAEpMXIi7eiJLgQidnMVteAsABCABAQgDIAABBSABARERBCABAQ4FIAEBEV0MBwkO
+cgBjAGUAcwAAAD5a1YEeVm1OrD7seRP6ulMABCABAQgDIAABBSABARERBCABAQ4FIAEBEV0MBwkO
 Dg4ODg4ODhI9BCAAEm0EIAAScQUgARJ1HAMgABwDIAAOBAAAEnkFIAIBHBgFIAEBEn0FAAIODg4F
 AAESQQ4GIAESgIUOBiABEoCJDgYgAhwcHRwFIAASgJEEIAASPQggBQIIDg4OCAQgAQIOCAABEoCF
 EYCZBCAAEkEGIAIBDhJBCLd6XFYZNOCJCImEXc2AgMyRBAAAAAAEAQAAAAIGDgMGElUDBhJZAwYS
 EAIGCAMGERQHAAISQRwSSQQAABJVBAAAElkFAAEBElkEAAASEAMAAAEECAASVQQIABJZBAgAEhAI
 AQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAAKAEAI1NUX2E0
 OTI5MWIzMTBjODQ5ZDViYTA5ZjBjZDg3ZTM4NTJhAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIw
-MTgAAEcBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5h
-bWUQLk5FVCBGcmFtZXdvcmsgNAAAALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5S
+MTgAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNQEAVA4URnJhbWV3b3JrRGlzcGxheU5h
+bWUSLk5FVCBGcmFtZXdvcmsgNC41ALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5S
 ZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFs
 LCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGlt
 ZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAADINAAAAAAAAAAAAADiNAAAACAAAAAA
@@ -780,14 +780,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
 AAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
-AAC9BO/+AAABAAAAAQC2c4IaAAABALZzgho/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAC9BO/+AAABAAAAAQCAQ3IbAAABAIBDchs/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
 AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
 AAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAw
 ADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4A
 eQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAA
 AFMAVABfAGEANAA5ADIAOQAxAGIAMwAxADAAYwA4ADQAOQBkADUAYgBhADAAOQBmADAAYwBkADgA
-NwBlADMAOAA1ADIAYQAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2
-ADcAOAA2AC4AMgA5ADYAMgAyAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMA
+NwBlADMAOAA1ADIAYQAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA3
+ADAAMgA2AC4AMQA3ADIAOAAwAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMA
 VABfAGEANAA5ADIAOQAxAGIAMwAxADAAYwA4ADQAOQBkADUAYgBhADAAOQBmADAAYwBkADgANwBl
 ADMAOAA1ADIAYQAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAA
 QwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQAcgBh
@@ -796,8 +796,8 @@ bQBlAAAAUwBUAF8AYQA0ADkAMgA5ADEAYgAzADEAMABjADgANAA5AGQANQBiAGEAMAA5AGYAMABj
 AGQAOAA3AGUAMwA4ADUAMgBhAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUA
 AAAAAFMAVABfAGEANAA5ADIAOQAxAGIAMwAxADAAYwA4ADQAOQBkADUAYgBhADAAOQBmADAAYwBk
 ADgANwBlADMAOAA1ADIAYQAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEA
-LgAwAC4ANgA3ADgANgAuADIAOQA2ADIAMgAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBl
-AHIAcwBpAG8AbgAAADEALgAwAC4ANgA3ADgANgAuADIAOQA2ADIAMgAAAAAAAAAAAAAAAAAAAAAA
+LgAwAC4ANwAwADIANgAuADEANwAyADgAMAAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBl
+AHIAcwBpAG8AbgAAADEALgAwAC4ANwAwADIANgAuADEANwAyADgAMAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -825,12 +825,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:ExecutableType="Microsoft.ScriptTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Import Records after Purge"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ScriptProject
           Name="ST_46a52c39889a45f9b1641281c16ab2e3"
-          VSTAMajorVersion="3"
+          VSTAMajorVersion="15"
           VSTAMinorVersion="0"
           Language="CSharp"
           ReadOnlyVariables="$Package::ConnectionString,$Package::Domain,$Package::Hash,$Package::Key,$Package::Pass,$Package::Path,$Package::PathToBin,$Package::Query,$Package::User">
@@ -1152,7 +1152,7 @@ namespace ST_a49291b310c849d5ba09f0cd87e3852a
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ST_a49291b310c849d5ba09f0cd87e3852a</RootNamespace>
     <AssemblyName>ST_46a52c39889a45f9b1641281c16ab2e3</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
     <TargetFrameworkProfile></TargetFrameworkProfile>
@@ -1181,8 +1181,8 @@ namespace ST_a49291b310c849d5ba09f0cd87e3852a
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
@@ -1217,7 +1217,7 @@ namespace ST_a49291b310c849d5ba09f0cd87e3852a
         <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
         <Host Name="ScriptTask" />
         <ProjectClient>
-          <HostIdentifier>SSIS_ST120</HostIdentifier>
+          <HostIdentifier>SSIS_ST140</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
@@ -1227,21 +1227,21 @@ namespace ST_a49291b310c849d5ba09f0cd87e3852a
             Name="Project"
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
-		<msb:CodeName>ST_46a52c39889a45f9b1641281c16ab2e3</msb:CodeName>
-		<msb:DisplayName>ST_46a52c39889a45f9b1641281c16ab2e3</msb:DisplayName>
-		<msb:ProjectId>{69E98687-D5E7-4FAA-86C9-6FE845D07518}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="ST_46a52c39889a45f9b1641281c16ab2e3.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ScriptMain.cs"/>
-	</msb:ItemGroup>
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_46a52c39889a45f9b1641281c16ab2e3</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_46a52c39889a45f9b1641281c16ab2e3</msb:DisplayName>
+    <msb:ProjectId>{DE654339-E64F-402A-8AAD-D9D17C58FFA8}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_46a52c39889a45f9b1641281c16ab2e3.csproj" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Settings.Designer.cs"
@@ -1352,8 +1352,8 @@ namespace ST_a49291b310c849d5ba09f0cd87e3852a.Properties {
           <BinaryItem
             Name="ST_46a52c39889a45f9b1641281c16ab2e3.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAF6AYFsAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAAFjUA
-AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIyVnFwAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAAFjUA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAMQ0AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAHBUAAAAgAAAAFgAAAAIA
@@ -1395,8 +1395,8 @@ ADwAIQFKBX0A2QCYBgEAkQD+ADwAKQFTBoYAcQBUBQYAiQBUBQYACQHjAIsACQGnBpQAqQBUBZkA
 yQBUBQYACAAYALIACAAcALcAKQBzACoBLgALAAIBLgATAAsBLgAbACoBLgAjADMBLgArAFwBLgAz
 AFwBLgA7AFwBLgBDADMBLgBLAGIBLgBTAFwBLgBbAHkBQwBjALcASQBzACoBYwBrALcAgQB7ALcA
 GwADAAEABAADAAAAEgXzAAAAXwH4AAAAkAb9AAIABQADAAIABgAFAAEABwAFAAIACAAHAASAAAAB
-AAAAghr3cwAAAAAAAAEAAAAEAAAAAAAAAAAAAACgAIMAAAAAAAwAAAAAAAAAAAAAAKkAwQMAAAAA
-BAAAAAAAAAAAAAAAoABiBAAAAAAMAAAAAAAAAAAAAACpADgAAAAAAAAAAAABAAAApQUAAAUAAgAA
+AAAAchuGQwAAAAAAAAEAAAAEAAAAAAAAAAAAAACgAIMAAAAAAA4AAAAAAAAAAAAAAKkAwQMAAAAA
+BAAAAAAAAAAAAAAAoABiBAAAAAAOAAAAAAAAAAAAAACpADgAAAAAAAAAAAABAAAApQUAAAUAAgAA
 AABTVF80NmE1MmMzOTg4OWE0NWY5YjE2NDEyODFjMTZhYjJlMwA8TW9kdWxlPgBTeXN0ZW0uSU8A
 TWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAHZhbHVlX18AU1RfYTQ5MjkxYjMxMGM4NDlk
 NWJhMDlmMGNkODdlMzg1MmEAbXNjb3JsaWIAR2V0TWV0aG9kAGdldF9TdGFja1RyYWNlAGRlZmF1
@@ -1440,15 +1440,15 @@ ZABsAGwAACNGAGEAcwB0AE0AZQBtAGIAZQByAC4AUwBpAGcAbgBlAGQAACtGAGEAcwB0AE0AZQBt
 AGIAZQByAC4AUwBpAGcAbgBlAGQALgBkAGwAbAAAH04AZQB3AHQAbwBuAHMAbwBmAHQALgBKAHMA
 bwBuAAAnTgBlAHcAdABvAG4AcwBvAGYAdAAuAEoAcwBvAG4ALgBkAGwAbAAAcVMAVABfAGEANAA5
 ADIAOQAxAGIAMwAxADAAYwA4ADQAOQBkADUAYgBhADAAOQBmADAAYwBkADgANwBlADMAOAA1ADIA
-YQAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAEB5p7Pn++tApBzl
-yB+tGfwABCABAQgDIAABBSABARERBCABAQ4FIAEBEV0MBwkODg4ODg4ODhI9BCAAEm0EIAAScQUg
+YQAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAABuckbltvvVPjz1g
+ge+y0mMABCABAQgDIAABBSABARERBCABAQ4FIAEBEV0MBwkODg4ODg4ODhI9BCAAEm0EIAAScQUg
 ARJ1HAMgABwDIAAOBAAAEnkFIAIBHBgFIAEBEn0FAAIODg4FAAESQQ4GIAESgIUOBiABEoCJDgYg
 AhwcHRwFIAASgJEEIAASPQggBQIIDg4OCAQgAQIOCAABEoCFEYCZBCAAEkEGIAIBDhJBCLd6XFYZ
 NOCJCImEXc2AgMyRBAAAAAAEAQAAAAIGDgMGElUDBhJZAwYSEAIGCAMGERQHAAISQRwSSQQAABJV
 BAAAElkFAAEBElkEAAASEAMAAAEECAASVQQIABJZBAgAEhAIAQAIAAAAAAAeAQABAFQCFldyYXBO
 b25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAAKAEAI1NUX2E0OTI5MWIzMTBjODQ5ZDViYTA5ZjBj
-ZDg3ZTM4NTJhAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTgAAEcBABouTkVURnJhbWV3b3Jr
-LFZlcnNpb249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsgNAAA
+ZDg3ZTM4NTJhAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTgAAEkBABouTkVURnJhbWV3b3Jr
+LFZlcnNpb249djQuNQEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC41
 ALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3Js
 aWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdh
 NWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAA
@@ -1460,14 +1460,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
 AAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
-AAC9BO/+AAABAAAAAQD3c4IaAAABAPdzgho/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAC9BO/+AAABAAAAAQCGQ3IbAAABAIZDchs/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
 AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
 AAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAw
 ADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4A
 eQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAA
 AFMAVABfAGEANAA5ADIAOQAxAGIAMwAxADAAYwA4ADQAOQBkADUAYgBhADAAOQBmADAAYwBkADgA
-NwBlADMAOAA1ADIAYQAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2
-ADcAOAA2AC4AMgA5ADYAOAA3AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMA
+NwBlADMAOAA1ADIAYQAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA3
+ADAAMgA2AC4AMQA3ADIAOAA2AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMA
 VABfADQANgBhADUAMgBjADMAOQA4ADgAOQBhADQANQBmADkAYgAxADYANAAxADIAOAAxAGMAMQA2
 AGEAYgAyAGUAMwAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAA
 QwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA4AAAAKgABAAEATABlAGcAYQBsAFQAcgBh
@@ -1476,8 +1476,8 @@ bQBlAAAAUwBUAF8ANAA2AGEANQAyAGMAMwA5ADgAOAA5AGEANAA1AGYAOQBiADEANgA0ADEAMgA4
 ADEAYwAxADYAYQBiADIAZQAzAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUA
 AAAAAFMAVABfAGEANAA5ADIAOQAxAGIAMwAxADAAYwA4ADQAOQBkADUAYgBhADAAOQBmADAAYwBk
 ADgANwBlADMAOAA1ADIAYQAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEA
-LgAwAC4ANgA3ADgANgAuADIAOQA2ADgANwAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBl
-AHIAcwBpAG8AbgAAADEALgAwAC4ANgA3ADgANgAuADIAOQA2ADgANwAAAAAAAAAAAAAAAAAAAAAA
+LgAwAC4ANwAwADIANgAuADEANwAyADgANgAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBl
+AHIAcwBpAG8AbgAAADEALgAwAC4ANwAwADIANgAuADEANwAyADgANgAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1506,7 +1506,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:LocaleID="-1"
       DTS:ObjectName="Purge Records"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1550,7 +1550,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="8">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">

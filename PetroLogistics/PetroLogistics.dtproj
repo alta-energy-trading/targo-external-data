@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">STUKLW042A</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAAC8e3HmGqn56zxaLb5VQPW2AAAAAASAAACgAAAAEAAAAAwXCUlgB2nv0rSz6Q6iZy+IAAAASg7b7gLi0mNMQskn1Gmp3QLy53FPHkjP3ydAhPqFTWYvOfx9UqfNHVYAa8MfjxH762Bd6gW29n3ZMrdPHL+tSISsoTuh3B3hL+0ZCsWaJK4WeHiMkleEqD2rdqAED2Xvo8lnJtsuIZXg7uxWtq56kVZjRUmEpWFKtWTVxvZzbBbpHQd7Jiib5xQAAADKhogfm3BXNeoC9UEHXKt/Ci0vRg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAADYWkkV/dJAonLFGWxLANASAAAAAASAAACgAAAAEAAAAIuDuLbFqkmaQ9EMUnRwE9iIAAAAusFzZTpwwmAtqx9ictVMTnwoPscVARkYIGv1/j2KIyNhT/BPMOJglQ466PbIZ6m1de/hTcFV+yXwK+Cz8BaLg14Tmw/7tjKWTj6+ry2iS/cQdiMmb1ljtIyWKH1ZqDwQsSHnwPcCasC0Vq1lcmSKTia5SsGMHwhJth8STk+BNMwGbbWM3UkLZhQAAACNRes26LC9ujo+eUneRzDsyesRPQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,10 +42,10 @@
                 <SSIS:Property SSIS:Name="Name">ImportPetroLogisticsData</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">28</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E505F280-C8EF-4029-B46C-E59B00DBA3E3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{53DEF86D-6AE2-4CC8-8495-E76EBD390F92}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -62,7 +62,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=STCHGS112;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=Lon-PC53;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -90,7 +90,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">c5WtePpLssFsjIkJnj2jC9XhrolyXyicUWBltvEOf08m2Dq87lkgGw2OyvFwZuP7</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">vqDLzZiQwuKx4m7eplhguyEBZ0jMq70mDOhFG1cLQkl9xqfiPN1Fe9vBgkL8hntx</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -104,7 +104,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">b15ex3kdz006p3761wdt56qi</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">iaut20xif17ly51xc5330n67</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -132,7 +132,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">/api/movementsdata.php</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">/api/v2/movementsdata.php</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -146,7 +146,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\temp\ImportData.PetroLogistics\bin</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\temp\dlls</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -174,7 +174,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Oman_CO_2018_Present|OPEC_CN_2016|Oman_CO_2017</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">FSU_CO_2019_P31|FSU_CN_2019_P31|Saudi_CO_2019_Present|Iran_CO_2019_Present|Iran_CN_2019_Present|Iraq_CO_2019_Present|Kuwait_CO_2019_Present|Qatar_CO_2019_Present|Qatar_CN_2019_Present|UAE_CO_2019_Present|Oman_CO_2019_Present|</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -188,7 +188,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">ragarwal_http_s1BP49bfzV9M</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">garym_http_A0gtFsUMb234</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -298,7 +298,7 @@
         <ConnectionProviderMappings />
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
-        <TargetServerVersion>SQLServer2016</TargetServerVersion>
+        <TargetServerVersion>SQLServer2017</TargetServerVersion>
         <ParameterConfigurationValues>
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>
