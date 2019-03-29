@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="GetRefineryData"
   DTS:PackageType="5"
-  DTS:VersionBuild="230"
-  DTS:VersionGUID="{F8A4EE93-BD91-4A01-971E-1795741ACE61}">
+  DTS:VersionBuild="236"
+  DTS:VersionGUID="{AB29AC83-CA1B-4E8D-930D-1DBA74FBD647}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -56,7 +56,7 @@
       DTS:Required="True">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">C:\Temp\Refinery.xlsx</DTS:Property>
+        DTS:Name="ParameterValue">C:\Temp\RefineryUpload\Test\RefineryUpload_Test.xlsx</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -74,14 +74,27 @@
       DTS:CreationName=""
       DTS:DTSID="{FB48BCDD-431B-4CF6-B7EF-97E89796B640}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;select * FROM OPENROWSET(&#xA;'Microsoft.ACE.OLEDB.12.0'&#xA;, 'Excel 12.0;Database=&quot; + @[$Package::FilePath] + &quot;'&#xA;, [Capacity$]&#xA;)&quot;"
+      DTS:Expression="&quot;select RefineryName&#xA;, UnitName&#xA;, UnitTypeName&#xA;, UnitCapacity&#xA;, Start&#xA;, Status&#xA;, Source&#xA;, Quality&#xA;, Username&#xA;, CAST(Comments as nvarchar(max)) Comments&#xA;, ChangeType&#xA;, Id&#xA;, IsStatic&#xA;FROM OPENROWSET(&#xA;'Microsoft.ACE.OLEDB.12.0'&#xA;, 'Excel 12.0;Database=&quot; + @[$Package::FilePath] + &quot;'&#xA;, [Capacity$]&#xA;)&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="CapacityQuery">
       <DTS:VariableValue
-        DTS:DataType="8">select * FROM OPENROWSET(
+        DTS:DataType="8">select RefineryName
+, UnitName
+, UnitTypeName
+, UnitCapacity
+, Start
+, Status
+, Source
+, Quality
+, Username
+, CAST(Comments as nvarchar(max)) Comments
+, ChangeType
+, Id
+, IsStatic
+FROM OPENROWSET(
 'Microsoft.ACE.OLEDB.12.0'
-, 'Excel 12.0;Database=C:\Temp\Refinery.xlsx'
+, 'Excel 12.0;Database=C:\Temp\RefineryUpload\Test\RefineryUpload_Test.xlsx'
 , [Capacity$]
 )</DTS:VariableValue>
     </DTS:Variable>
@@ -89,14 +102,34 @@
       DTS:CreationName=""
       DTS:DTSID="{A61076D5-96BA-48ED-A697-04CDFA514C11}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;select * FROM OPENROWSET(&#xA;'Microsoft.ACE.OLEDB.12.0'&#xA;, 'Excel 12.0;Database=&quot; + @[$Package::FilePath] + &quot;'&#xA;, [Maintenance$]&#xA;)&quot;"
+      DTS:Expression="&quot;select Region&#xA;, SubRegion&#xA;, Country&#xA;, Location&#xA;, RefineryName&#xA;, Port&#xA;, UnitName&#xA;, UnitCategory&#xA;, UNitTypeName&#xA;, OfflineCapacity&#xA;, DisruptionType&#xA;, [Start]&#xA;, [End]&#xA;, Source&#xA;, Quality&#xA;, Username&#xA;, CAST(Comments as varchar(max)) Comments&#xA;, Id&#xA;, IsStatic&#xA;&#xA;FROM OPENROWSET(&#xA;'Microsoft.ACE.OLEDB.12.0'&#xA;, 'Excel 12.0;Database=&quot; + @[$Package::FilePath] + &quot;'&#xA;, [Maintenance$]&#xA;)&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="MaintenanceQuery">
       <DTS:VariableValue
-        DTS:DataType="8">select * FROM OPENROWSET(
+        DTS:DataType="8">select Region
+, SubRegion
+, Country
+, Location
+, RefineryName
+, Port
+, UnitName
+, UnitCategory
+, UNitTypeName
+, OfflineCapacity
+, DisruptionType
+, [Start]
+, [End]
+, Source
+, Quality
+, Username
+, CAST(Comments as varchar(max)) Comments
+, Id
+, IsStatic
+
+FROM OPENROWSET(
 'Microsoft.ACE.OLEDB.12.0'
-, 'Excel 12.0;Database=C:\Temp\Refinery.xlsx'
+, 'Excel 12.0;Database=C:\Temp\RefineryUpload\Test\RefineryUpload_Test.xlsx'
 , [Maintenance$]
 )</DTS:VariableValue>
     </DTS:Variable>
@@ -726,7 +759,7 @@ public class Variables
 		<msb:CodeName>SC_dde514addf1d46649c3d0e5d6722f670</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_dde514addf1d46649c3d0e5d6722f670</msb:DisplayName>
-		<msb:ProjectId>{8A0E291F-C4C9-4501-A91C-C19F742820A8}</msb:ProjectId>
+		<msb:ProjectId>{FD4ACD75-FA56-4F17-ADDC-FBDB4869173F}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_dde514addf1d46649c3d0e5d6722f670.csproj"/>
@@ -872,7 +905,7 @@ namespace SC_dde514addf1d46649c3d0e5d6722f670.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAOevm1wAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAA9jgA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAKnsnFwAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAA9jgA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAKQ4AABPAAAAAEAAAGQEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -976,8 +1009,8 @@ ACAAcAByAG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQAIABiAGUAIABzAGUAdAAgAHQAbwAgAEYA
 YQBsAHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABvACAAdABoAGUAIABj
 AG8AbAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAD0kAbgBwAHUAdAAgADAAAHFTAEMAXwBkAGQA
 ZQA1ADEANABhAGQAZABmADEAZAA0ADYANgA0ADkAYwAzAGQAMABlADUAZAA2ADcAMgAyAGYANgA3
-ADAALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAANkyX2cYmd1BjYb9
-+QJtUuUABCABAQgDIAABBSABARERBCABAQ4FIAEBEWUKBwYODhI5CBE9AgQAABI5AyAADgUAAQ4d
+ADAALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAEnmwqM7bUlNgBai
+1emO3koABCABAQgDIAABBSABARERBCABAQ4FIAEBEWUKBwYODhI5CBE9AgQAABI5AyAADgUAAQ4d
 DgcHAx0FEkEIBQAAEoCFBSABHQUOBiABHQUdBQQgAQ4OBSABEkEOCSADARJJHQgSTQMGEkkDBh0I
 BCABCAgEIAECCAUgARE9CAUgAgEIHAMgAAIHIAICDhGAlQUgAR0ICAgAARKAmRGAnQUgABKAoQcg
 AgEOEoChCLd6XFYZNOCJCImEXc2AgMyRAwYSFAMGEhgDBhJRAwYSXQMGEmEDBhIgBSABARIMBgAC
@@ -1769,7 +1802,7 @@ public class Variables
 		<msb:CodeName>SC_7c835c04a81140218c3ffd4a7031e502</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_7c835c04a81140218c3ffd4a7031e502</msb:DisplayName>
-		<msb:ProjectId>{51DEF969-C474-41A0-8A4F-10A4D89DBB26}</msb:ProjectId>
+		<msb:ProjectId>{BF775A3C-2645-457B-B147-A85AD9BCF336}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_7c835c04a81140218c3ffd4a7031e502.csproj"/>
@@ -1915,7 +1948,7 @@ namespace SC_7c835c04a81140218c3ffd4a7031e502.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAO2vm1wAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAAJjkA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDALDsnFwAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAAJjkA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAANQ4AABPAAAAAEAAAGQEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2020,7 +2053,7 @@ bwB0ACAAYgBlACAAcwBlAHQAIAB0AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAg
 AHYAYQBsAHUAZQAgAHQAbwAgAHQAaABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4A
 AA9JAG4AcAB1AHQAIAAwAABxUwBDAF8ANwBjADgAMwA1AGMAMAA0AGEAOAAxADEANAAwADIAMQA4
 AGMAMwBmAGYAZAA0AGEANwAwADMAMQBlADUAMAAyAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIA
-ZQBzAG8AdQByAGMAZQBzAAAsYeQizxNiSYhKDHLfZFXTAAQgAQEIAyAAAQUgAQEREQQgAQEOBSAB
+ZQBzAG8AdQByAGMAZQBzAABqCIvvGc1BTYBcsTwnNQTTAAQgAQEIAyAAAQUgAQEREQQgAQEOBSAB
 ARFpDAcHDg4SOQgRPRFBAgQAABI5AyAADgUAAQ4dDgcHAx0FEkUIBQAAEoCJBSABHQUOBiABHQUd
 BQQgAQ4OBSABEkUOCSADARJNHQgSUQMGEk0DBh0IBCABCAgEIAECCAUgARE9CAUgARFBCAUgAgEI
 HAMgAAIHIAICDhGAmQUgAR0ICAgAARKAnRGAoQUgABKApQcgAgEOEoClCLd6XFYZNOCJCImEXc2A
@@ -2815,7 +2848,7 @@ public class Input0Buffer: ScriptBuffer
 		<msb:CodeName>SC_738add914545424e8ebac25e642ab169</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_738add914545424e8ebac25e642ab169</msb:DisplayName>
-		<msb:ProjectId>{CAC91C32-DCD0-4F0D-A85E-3365C592BE16}</msb:ProjectId>
+		<msb:ProjectId>{49FC1F1B-F735-427B-AD6F-AFF0D4A520C8}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_738add914545424e8ebac25e642ab169.csproj"/>
@@ -2961,7 +2994,7 @@ namespace SC_738add914545424e8ebac25e642ab169.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPSvm1wAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAAQjkA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDALbsnFwAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAAQjkA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAPA4AABPAAAAAEAAAGQEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -3066,8 +3099,8 @@ bABsACAAcAByAG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQAIABiAGUAIABzAGUAdAAgAHQAbwAg
 AEYAYQBsAHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABvACAAdABoAGUA
 IABjAG8AbAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAD0kAbgBwAHUAdAAgADAAAHFTAEMAXwA3
 ADMAOABhAGQAZAA5ADEANAA1ADQANQA0ADIANABlADgAZQBiAGEAYwAyADUAZQA2ADQAMgBhAGIA
-MQA2ADkALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAIci0d4AX/lG
-qwtYcMh9QMcABCABAQgDIAABBSABARERBCABAQ4FIAEBEWULBwcODhI5CA0RPQIEAAASOQMgAA4F
+MQA2ADkALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAADi1Iic5X8lM
+vC6pehrEzfwABCABAQgDIAABBSABARERBCABAQ4FIAEBEWULBwcODhI5CA0RPQIEAAASOQMgAA4F
 AAEOHQ4HBwMdBRJBCAUAABKAiQUgAR0FDgYgAR0FHQUEIAEODgUgARJBDgkgAwESSR0IEk0DBhJJ
 AwYdCAQgAQ0IBCABAggFIAERPQgEIAEICAUgAgEIHAMgAAIHIAICDhGAmQUgAR0ICAgAARKAnRGA
 oQUgABKApQcgAgEOEoClCLd6XFYZNOCJCImEXc2AgMyRAwYSFAMGEhgDBhJRAwYSXQMGEmEDBhIg
@@ -3859,7 +3892,7 @@ using System.Runtime.CompilerServices;
 		<msb:CodeName>SC_785de93ef52d406493bda87390136250</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>SC_785de93ef52d406493bda87390136250</msb:DisplayName>
-		<msb:ProjectId>{2DA6F952-A0BB-4D67-928F-7972B81B6ABC}</msb:ProjectId>
+		<msb:ProjectId>{51EDD19D-0D3E-45B4-BFA5-F90D6CAD0667}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="SC_785de93ef52d406493bda87390136250.csproj"/>
@@ -4005,7 +4038,7 @@ namespace SC_785de93ef52d406493bda87390136250.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPuvm1wAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAASjkA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAL3snFwAAAAAAAAAAOAAIiALATAAABoAAAAIAAAAAAAASjkA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAPg4AABPAAAAAEAAAGQEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -4110,8 +4143,8 @@ TgB1AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBuAG4AbwB0ACAAYgBlACAAcwBlAHQAIAB0
 AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAgAHYAYQBsAHUAZQAgAHQAbwAgAHQA
 aABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4AAA9JAG4AcAB1AHQAIAAwAABxUwBD
 AF8ANwA4ADUAZABlADkAMwBlAGYANQAyAGQANAAwADYANAA5ADMAYgBkAGEAOAA3ADMAOQAwADEA
-MwA2ADIANQAwAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAIg4EZ
-bbrASaD54GEZeZnZAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFpDAcHDg4SOQgRPRFBAgQAABI5
+MwA2ADIANQAwAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAABVLZS2
+IvnrS6WZgwXObieUAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFpDAcHDg4SOQgRPRFBAgQAABI5
 AyAADgUAAQ4dDgcHAx0FEkUIBQAAEoCJBSABHQUOBiABHQUdBQQgAQ4OBSABEkUOCSADARJNHQgS
 UQMGEk0DBh0IBCABCAgEIAECCAUgARE9CAUgARFBCAUgAgEIHAMgAAIHIAICDhGAmQUgAR0ICAgA
 ARKAnRGAoQUgABKApQcgAgEOEoClCLd6XFYZNOCJCImEXc2AgMyRAwYSFAMGEhgDBhJVAwYSYQMG
@@ -4357,16 +4390,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].Columns[RefineryName]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].ExternalColumns[RefineryName]"
-                      length="255"
-                      lineageId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].Columns[RefineryName]"
-                      name="RefineryName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].Columns[UnitName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -4481,14 +4504,19 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       lineageId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].Columns[IsStatic]"
                       name="IsStatic"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].Columns[RefineryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].ExternalColumns[RefineryName]"
+                      length="255"
+                      lineageId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].Columns[RefineryName]"
+                      name="RefineryName"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].ExternalColumns[RefineryName]"
-                      dataType="wstr"
-                      length="255"
-                      name="RefineryName" />
                     <externalMetadataColumn
                       refId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].ExternalColumns[UnitName]"
                       dataType="wstr"
@@ -4544,6 +4572,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       refId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].ExternalColumns[IsStatic]"
                       dataType="bool"
                       name="IsStatic" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output].ExternalColumns[RefineryName]"
+                      dataType="wstr"
+                      length="255"
+                      name="RefineryName" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -5154,7 +5187,8 @@ where [refTable].[ChangeType] = ?</property>
                       lineageId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Output].Columns[Id]" />
                     <inputColumn
                       refId="Package\Data Flow\Conversion (Maintenance).Inputs[Data Conversion Input].Columns[Comments]"
-                      cachedDataType="nText"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
                       cachedName="Comments"
                       lineageId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Output].Columns[Comments]" />
                   </inputColumns>
@@ -7927,7 +7961,8 @@ where [refTable].[DisruptionType] = ?</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Output].Columns[Comments]"
-                      dataType="nText"
+                      codePage="1252"
+                      dataType="text"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Output].ExternalColumns[Comments]"
@@ -8034,7 +8069,8 @@ where [refTable].[DisruptionType] = ?</property>
                       name="Username" />
                     <externalMetadataColumn
                       refId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Output].ExternalColumns[Comments]"
-                      dataType="nText"
+                      codePage="1252"
+                      dataType="text"
                       name="Comments" />
                     <externalMetadataColumn
                       refId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Output].ExternalColumns[Id]"
@@ -8146,7 +8182,8 @@ where [refTable].[DisruptionType] = ?</property>
                       name="Username" />
                     <outputColumn
                       refId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Error Output].Columns[Comments]"
-                      dataType="nText"
+                      codePage="1252"
+                      dataType="text"
                       lineageId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Error Output].Columns[Comments]"
                       name="Comments" />
                     <outputColumn
@@ -13584,7 +13621,7 @@ where [refTable].[Status] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow\1772:invalid};</property>
+                  name="ParameterMap">#{Package\Data Flow\1788:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -14442,7 +14479,7 @@ where [refTable].[Username] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Flow\1773:invalid};</property>
+                  name="ParameterMap">#{Package\Data Flow\Capacity.Outputs[OLE DB Source Output].ExternalColumns[RefineryName]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -14730,14 +14767,14 @@ where [refTable].[Username] = ?</property>
               startId="Package\Data Flow\Split Maintenance.Outputs[EndDate]" />
             <path
               refId="Package\Data Flow.Paths[Derived Column Output5]"
-              endId="Package\Data Flow\Insert Updated Maintenance.Inputs[OLE DB Destination Input]"
+              endId="Package\Data Flow\Build Hash (Existing maintenance).Inputs[Input 0]"
               name="Derived Column Output"
-              startId="Package\Data Flow\Load date column.Outputs[Derived Column Output]" />
+              startId="Package\Data Flow\Replace Nulls (Existing Maintenance).Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow.Paths[Derived Column Output4]"
-              endId="Package\Data Flow\Insert Updated Capacity.Inputs[OLE DB Destination Input]"
+              endId="Package\Data Flow\Insert New Maintenance.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\Data Flow\Load date column Capacity.Outputs[Derived Column Output]" />
+              startId="Package\Data Flow\Load date new Maintenance.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow.Paths[Derived Column Output3]"
               endId="Package\Data Flow\Refinery (Capacity).Inputs[Lookup Input]"
@@ -14750,14 +14787,14 @@ where [refTable].[Username] = ?</property>
               startId="Package\Data Flow\Replace Null Static (Maintenance).Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow.Paths[Derived Column Output1]"
-              endId="Package\Data Flow\Insert New Maintenance.Inputs[OLE DB Destination Input]"
+              endId="Package\Data Flow\Insert Updated Capacity.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\Data Flow\Load date new Maintenance.Outputs[Derived Column Output]" />
+              startId="Package\Data Flow\Load date column Capacity.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow.Paths[Derived Column Output]"
-              endId="Package\Data Flow\Build Hash (Existing maintenance).Inputs[Input 0]"
+              endId="Package\Data Flow\Insert Updated Maintenance.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\Data Flow\Replace Nulls (Existing Maintenance).Outputs[Derived Column Output]" />
+              startId="Package\Data Flow\Load date column.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow.Paths[Derived Column Output2]"
               endId="Package\Data Flow\Insert New Capacity.Inputs[OLE DB Destination Input]"
@@ -14790,79 +14827,79 @@ where [refTable].[Username] = ?</property>
               startId="Package\Data Flow\Split Capacity.Outputs[Insert]" />
             <path
               refId="Package\Data Flow.Paths[Lookup Match Output9]"
-              endId="Package\Data Flow\Quality (Maintenance).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Source (Maintenance).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output14]"
-              endId="Package\Data Flow\Unit Type (Capacity).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Refinery (Capacity).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output13]"
-              endId="Package\Data Flow\Build Hash (New Maintenance).Inputs[Input 0]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\User (Maintenance).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output12]"
-              endId="Package\Data Flow\Unit (Maintenance).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Unit Type (Maintenance).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output11]"
-              endId="Package\Data Flow\Build Hash (New Capacity).Inputs[Input 0]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\User (Capacity).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output10]"
-              endId="Package\Data Flow\Unit Type (Maintenance).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Refinery (Maintenance).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output7]"
-              endId="Package\Data Flow\Quality (Capacity).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Source (Capacity).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output8]"
-              endId="Package\Data Flow\Disruption Type (Maintenance).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Unit (Maintenance).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output5]"
-              endId="Package\Data Flow\Unit (Capacity).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Unit Type (Capacity).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output4]"
-              endId="Package\Data Flow\User (Maintenance).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Quality (Maintenance).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output3]"
-              endId="Package\Data Flow\Status (Capacity).Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow\Unit (Capacity).Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Flow.Paths[Lookup Match Output2]"
               endId="Package\Data Flow\Source (Maintenance).Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Data Flow\Disruption Type (Maintenance).Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Data Flow.Paths[Lookup Match Output1]"
-              endId="Package\Data Flow\Change Type (Capacity).Inputs[Lookup Input]"
+              refId="Package\Data Flow.Paths[Lookup Match Output14]"
+              endId="Package\Data Flow\Disruption Type (Maintenance).Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\Data Flow\Quality (Capacity).Outputs[Lookup Match Output]" />
+              startId="Package\Data Flow\Unit (Maintenance).Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Data Flow.Paths[Lookup Match Output]"
+              refId="Package\Data Flow.Paths[Lookup Match Output13]"
+              endId="Package\Data Flow\User (Maintenance).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Quality (Maintenance).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output12]"
+              endId="Package\Data Flow\Source (Capacity).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Status (Capacity).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output11]"
               endId="Package\Data Flow\User (Capacity).Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Data Flow\Change Type (Capacity).Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Data Flow.Paths[Lookup Match Output6]"
-              endId="Package\Data Flow\Source (Capacity).Inputs[Lookup Input]"
+              refId="Package\Data Flow.Paths[Lookup Match Output10]"
+              endId="Package\Data Flow\Change Type (Capacity).Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\Data Flow\Status (Capacity).Outputs[Lookup Match Output]" />
+              startId="Package\Data Flow\Quality (Capacity).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output7]"
+              endId="Package\Data Flow\Unit Type (Maintenance).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Refinery (Maintenance).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output8]"
+              endId="Package\Data Flow\Status (Capacity).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Unit (Capacity).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output5]"
+              endId="Package\Data Flow\Unit (Maintenance).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Unit Type (Maintenance).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output4]"
+              endId="Package\Data Flow\Build Hash (New Maintenance).Inputs[Input 0]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\User (Maintenance).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output3]"
+              endId="Package\Data Flow\Unit Type (Capacity).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Refinery (Capacity).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output2]"
+              endId="Package\Data Flow\Quality (Maintenance).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Source (Maintenance).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output1]"
+              endId="Package\Data Flow\Quality (Capacity).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Source (Capacity).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output]"
+              endId="Package\Data Flow\Build Hash (New Capacity).Inputs[Input 0]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\User (Capacity).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow.Paths[Lookup Match Output6]"
+              endId="Package\Data Flow\Unit (Capacity).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow\Unit Type (Capacity).Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Flow.Paths[Merge Join Output]"
               endId="Package\Data Flow\Split Capacity.Inputs[Conditional Split Input]"
@@ -14885,34 +14922,34 @@ where [refTable].[Username] = ?</property>
               startId="Package\Data Flow\Split New &amp; Existing (Maintenance).Outputs[New Maintenance]" />
             <path
               refId="Package\Data Flow.Paths[Non Static and Current Rows1]"
-              endId="Package\Data Flow\Replace Nulls (Existing Maintenance).Inputs[Derived Column Input]"
-              name="Non Static and Current Rows"
-              startId="Package\Data Flow\Remove Static And End Dated Rows.Outputs[Non Static and Current Rows]" />
-            <path
-              refId="Package\Data Flow.Paths[Non Static and Current Rows]"
               endId="Package\Data Flow\Build Hash (Existing Capacity).Inputs[Input 0]"
               name="Non Static and Current Rows"
               startId="Package\Data Flow\Remove Static And End Dated Rows 1.Outputs[Non Static and Current Rows]" />
             <path
+              refId="Package\Data Flow.Paths[Non Static and Current Rows]"
+              endId="Package\Data Flow\Replace Nulls (Existing Maintenance).Inputs[Derived Column Input]"
+              name="Non Static and Current Rows"
+              startId="Package\Data Flow\Remove Static And End Dated Rows.Outputs[Non Static and Current Rows]" />
+            <path
               refId="Package\Data Flow.Paths[OLE DB Source Output3]"
-              endId="Package\Data Flow\Remove Static And End Dated Rows 1.Inputs[Conditional Split Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow\Existing Capacity.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Data Flow.Paths[OLE DB Source Output2]"
-              endId="Package\Data Flow\Remove Empty Capacity Rows.Inputs[Conditional Split Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Data Flow.Paths[OLE DB Source Output]"
               endId="Package\Data Flow\Remove Static And End Dated Rows.Inputs[Conditional Split Input]"
               name="OLE DB Source Output"
               startId="Package\Data Flow\Existing Maintenance.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Data Flow.Paths[OLE DB Source Output1]"
+              refId="Package\Data Flow.Paths[OLE DB Source Output2]"
               endId="Package\Data Flow\Remove Empty Maintenance Rows.Inputs[Conditional Split Input]"
               name="OLE DB Source Output"
               startId="Package\Data Flow\Maintenance.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow\Remove Empty Capacity Rows.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow\Capacity.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow\Remove Static And End Dated Rows 1.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow\Existing Capacity.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\Data Flow.Paths[Output 0]"
               endId="Package\Data Flow\Sort.Inputs[Sort Input]"
@@ -14993,22 +15030,6 @@ where [refTable].[Username] = ?</property>
       <GraphLayout
         Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="141,42"
-          Id="Package\Data Flow\Set as Static"
-          TopLeft="155,1328" />
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Data Flow\Quality (Capacity)"
-          TopLeft="931,667" />
-        <NodeLayout
-          Size="217,42"
-          Id="Package\Data Flow\Load date new Maintenance"
-          TopLeft="687,1193" />
-        <NodeLayout
-          Size="179,42"
-          Id="Package\Data Flow\Merge Join Capacity"
-          TopLeft="1202,1156" />
-        <NodeLayout
           Size="138,42"
           Id="Package\Data Flow\Conversion (Capacity)"
           TopLeft="921,166" />
@@ -15029,25 +15050,33 @@ where [refTable].[Username] = ?</property>
           Id="Package\Data Flow\Disruption Type (Maintenance)"
           TopLeft="689,535" />
         <NodeLayout
-          Size="142,42"
-          Id="Package\Data Flow\Maintenance"
-          TopLeft="712,8" />
+          Size="166,42"
+          Id="Package\Data Flow\Load date column"
+          TopLeft="553,1498" />
         <NodeLayout
           Size="193,42"
           Id="Package\Data Flow\Refinery (Maintenance)"
           TopLeft="695.888888888889,312.111111111111" />
         <NodeLayout
-          Size="185,55"
-          Id="Package\Data Flow\Split New &amp; Existing (Maintenance)"
-          TopLeft="702,1105" />
+          Size="155,42"
+          Id="Package\Data Flow\User (Capacity)"
+          TopLeft="942,813" />
         <NodeLayout
-          Size="146,42"
-          Id="Package\Data Flow\Split Capacity"
-          TopLeft="1217.77777777778,1334.44444444444" />
+          Size="99,42"
+          Id="Package\Data Flow\Sort"
+          TopLeft="1246,1081" />
         <NodeLayout
           Size="147,42"
           Id="Package\Data Flow\Replace Nulls"
           TopLeft="924,238" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Data Flow\Unit (Maintenance)"
+          TopLeft="713,460" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Data Flow\Unit (Capacity)"
+          TopLeft="928,455" />
         <NodeLayout
           Size="173,48"
           Id="Package\Data Flow\Build Hash (New Maintenance)"
@@ -15057,13 +15086,13 @@ where [refTable].[Username] = ?</property>
           Id="Package\Data Flow\Load date column Capacity"
           TopLeft="1183.77777777778,1494.11111111111" />
         <NodeLayout
+          Size="211,42"
+          Id="Package\Data Flow\Set as Static Capacity Row"
+          TopLeft="1582,1350" />
+        <NodeLayout
           Size="177,42"
           Id="Package\Data Flow\Insert New Capacity"
           TopLeft="941,1264" />
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Data Flow\Split Maintenance"
-          TopLeft="440,1331" />
         <NodeLayout
           Size="166,51"
           Id="Package\Data Flow\Replace Null Static (Maintenance)"
@@ -15073,49 +15102,49 @@ where [refTable].[Username] = ?</property>
           Id="Package\Data Flow\Insert Updated Capacity"
           TopLeft="1207,1578.33333333333" />
         <NodeLayout
-          Size="166,42"
-          Id="Package\Data Flow\Load date column"
-          TopLeft="553,1498" />
-        <NodeLayout
           Size="198,42"
           Id="Package\Data Flow\Change Type (Capacity)"
           TopLeft="922,736" />
-        <NodeLayout
-          Size="99,42"
-          Id="Package\Data Flow\Sort"
-          TopLeft="1246,1081" />
-        <NodeLayout
-          Size="179,42"
-          Id="Package\Data Flow\Refinery (Capacity)"
-          TopLeft="912,311" />
-        <NodeLayout
-          Size="148,50"
-          Id="Package\Data Flow\Build Hash (New Capacity)"
-          TopLeft="948,949" />
-        <NodeLayout
-          Size="177,60"
-          Id="Package\Data Flow\Split New &amp; Existing (Capacity)"
-          TopLeft="937,1102" />
-        <NodeLayout
-          Size="211,42"
-          Id="Package\Data Flow\Sort (ExistingMaintenance)"
-          TopLeft="414,1075" />
         <NodeLayout
           Size="163,42"
           Id="Package\Data Flow\Status (Capacity)"
           TopLeft="929,521" />
         <NodeLayout
+          Size="152,42"
+          Id="Package\Data Flow\Sort (Capacity)"
+          TopLeft="940,1033" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Data Flow\Existing Maintenance"
+          TopLeft="424.666666666667,803.222222222222" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Data Flow\Merge Join Capacity"
+          TopLeft="1202,1156" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Data Flow\Refinery (Capacity)"
+          TopLeft="912,311" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Data Flow\Split Maintenance"
+          TopLeft="440,1331" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Data Flow\Source (Maintenance)"
+          TopLeft="707,603" />
+        <NodeLayout
+          Size="148,50"
+          Id="Package\Data Flow\Build Hash (New Capacity)"
+          TopLeft="948,949" />
+        <NodeLayout
           Size="163,42"
           Id="Package\Data Flow\Existing Capacity"
           TopLeft="1208,864" />
         <NodeLayout
-          Size="176,42"
-          Id="Package\Data Flow\User (Maintenance)"
-          TopLeft="719,739" />
-        <NodeLayout
-          Size="152,42"
-          Id="Package\Data Flow\Unit (Capacity)"
-          TopLeft="928,455" />
+          Size="199,43"
+          Id="Package\Data Flow\Unit Type (Maintenance)"
+          TopLeft="697,387" />
         <NodeLayout
           Size="176,42"
           Id="Package\Data Flow\Remove Static And End Dated Rows"
@@ -15125,21 +15154,25 @@ where [refTable].[Username] = ?</property>
           Id="Package\Data Flow\Conversion (Maintenance)"
           TopLeft="698,172" />
         <NodeLayout
-          Size="211,42"
-          Id="Package\Data Flow\Set as Static Capacity Row"
-          TopLeft="1582,1350" />
+          Size="176,42"
+          Id="Package\Data Flow\User (Maintenance)"
+          TopLeft="719,739" />
         <NodeLayout
           Size="172,42"
-          Id="Package\Data Flow\Unit (Maintenance)"
-          TopLeft="713,460" />
+          Id="Package\Data Flow\Sort (Maintenance)"
+          TopLeft="709,1033" />
         <NodeLayout
-          Size="190,42"
-          Id="Package\Data Flow\Build Hash (Existing maintenance)"
-          TopLeft="424.777777777778,1008.55555555556" />
+          Size="176,42"
+          Id="Package\Data Flow\Remove Static And End Dated Rows 1"
+          TopLeft="1202,932" />
         <NodeLayout
           Size="171,42"
           Id="Package\Data Flow\End Date Capacity"
           TopLeft="1555,1440" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Data Flow\Source (Capacity)"
+          TopLeft="926,591" />
         <NodeLayout
           Size="187,42"
           Id="Package\Data Flow\Quality (Maintenance)"
@@ -15149,25 +15182,17 @@ where [refTable].[Username] = ?</property>
           Id="Package\Data Flow\Remove Empty Maintenance Rows"
           TopLeft="716,81" />
         <NodeLayout
-          Size="199,43"
-          Id="Package\Data Flow\Unit Type (Maintenance)"
-          TopLeft="697,387" />
-        <NodeLayout
-          Size="187,42"
-          Id="Package\Data Flow\Source (Maintenance)"
-          TopLeft="707,603" />
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Data Flow\User (Capacity)"
-          TopLeft="942,813" />
+          Size="190,42"
+          Id="Package\Data Flow\Build Hash (Existing maintenance)"
+          TopLeft="424.777777777778,1008.55555555556" />
         <NodeLayout
           Size="171,42"
           Id="Package\Data Flow\Insert New Maintenance"
           TopLeft="714,1270" />
         <NodeLayout
-          Size="172,42"
-          Id="Package\Data Flow\Sort (Maintenance)"
-          TopLeft="709,1033" />
+          Size="146,42"
+          Id="Package\Data Flow\Split Capacity"
+          TopLeft="1217.77777777778,1334.44444444444" />
         <NodeLayout
           Size="217,42"
           Id="Package\Data Flow\Insert Updated Maintenance"
@@ -15181,33 +15206,45 @@ where [refTable].[Username] = ?</property>
           Id="Package\Data Flow\Unit Type (Capacity)"
           TopLeft="919,387" />
         <NodeLayout
-          Size="176,42"
-          Id="Package\Data Flow\Remove Static And End Dated Rows 1"
-          TopLeft="1202,932" />
-        <NodeLayout
           Size="152,47"
           Id="Package\Data Flow\Remove Empty Capacity Rows"
           TopLeft="912,86" />
         <NodeLayout
-          Size="167,42"
-          Id="Package\Data Flow\Source (Capacity)"
-          TopLeft="926,591" />
+          Size="185,55"
+          Id="Package\Data Flow\Split New &amp; Existing (Maintenance)"
+          TopLeft="702,1105" />
         <NodeLayout
-          Size="184,42"
-          Id="Package\Data Flow\Existing Maintenance"
-          TopLeft="424.666666666667,803.222222222222" />
-        <NodeLayout
-          Size="152,42"
-          Id="Package\Data Flow\Sort (Capacity)"
-          TopLeft="940,1033" />
-        <NodeLayout
-          Size="161,54"
-          Id="Package\Data Flow\Build Hash (Existing Capacity)"
-          TopLeft="1209,1002" />
+          Size="142,42"
+          Id="Package\Data Flow\Maintenance"
+          TopLeft="712,8" />
         <NodeLayout
           Size="122,42"
           Id="Package\Data Flow\Capacity"
           TopLeft="924,11" />
+        <NodeLayout
+          Size="177,60"
+          Id="Package\Data Flow\Split New &amp; Existing (Capacity)"
+          TopLeft="937,1102" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Data Flow\Set as Static"
+          TopLeft="155,1328" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Data Flow\Quality (Capacity)"
+          TopLeft="931,667" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Data Flow\Load date new Maintenance"
+          TopLeft="687,1193" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Data Flow\Sort (ExistingMaintenance)"
+          TopLeft="414,1075" />
+        <NodeLayout
+          Size="161,54"
+          Id="Package\Data Flow\Build Hash (Existing Capacity)"
+          TopLeft="1209,1002" />
         <EdgeLayout
           Id="Package\Data Flow.Paths[Static1]"
           TopLeft="1363.77777777778,1355.44444444444">
@@ -15470,72 +15507,6 @@ where [refTable].[Username] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow.Paths[OLE DB Source Output3]"
-          TopLeft="1289.75,906">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,26"
-              Start="0,0"
-              End="0,18.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[OLE DB Source Output2]"
-          TopLeft="986.5,53">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33"
-              Start="0,0"
-              End="0,25.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[OLE DB Source Output1]"
-          TopLeft="785.75,50">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,31"
-              Start="0,0"
-              End="0,23.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[OLE DB Source Output]"
           TopLeft="516.333333333333,845.222222222222">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15557,31 +15528,73 @@ where [refTable].[Username] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow.Paths[Non Static and Current Rows1]"
-          TopLeft="515.055555555555,912.111111111111">
+          Id="Package\Data Flow.Paths[OLE DB Source Output2]"
+          TopLeft="785.75,50">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,30.6666666666671"
+              EndConnector="0,31"
               Start="0,0"
-              End="0,23.1666666666671">
+              End="0,23.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.1666666666671" />
+                    End="0,23.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-64.262578125,6.70882161458355,128.52515625,9.7490234375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow.Paths[Non Static and Current Rows]"
+          Id="Package\Data Flow.Paths[OLE DB Source Output1]"
+          TopLeft="1289.75,906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[OLE DB Source Output]"
+          TopLeft="986.5,53">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Non Static and Current Rows1]"
           TopLeft="1289.75,974">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15601,6 +15614,30 @@ where [refTable].[Username] = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-64.262578125,5.37548828125,128.52515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Non Static and Current Rows]"
+          TopLeft="515.055555555555,912.111111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.6666666666671"
+              Start="0,0"
+              End="0,23.1666666666671">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.1666666666671" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-64.262578125,6.70882161458355,128.52515625,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -15698,30 +15735,246 @@ where [refTable].[Username] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow.Paths[Lookup Match Output14]"
-          TopLeft="1005,353">
+          TopLeft="797.25,502">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,34"
+              EndConnector="0,33"
               Start="0,0"
-              End="0,26.5">
+              End="0,25.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.5" />
+                    End="0,25.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,7.4453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,6.9453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow.Paths[Lookup Match Output13]"
+          TopLeft="805.25,714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25"
+              Start="0,0"
+              End="0,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,2.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output12]"
+          TopLeft="1010,563">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,4.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output11]"
+          TopLeft="1020.25,778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,7.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output10]"
+          TopLeft="1017.5,709">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,3.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output9]"
+          TopLeft="798,577">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,3.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output8]"
+          TopLeft="1007.25,497">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24"
+              Start="0,0"
+              End="0,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,2.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output7]"
+          TopLeft="794.444444444444,354.111111111111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.8888888888889"
+              Start="0,0"
+              End="0,25.3888888888889">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.3888888888889" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,6.88975694444445,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output6]"
+          TopLeft="1006.25,429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,3.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output5]"
+          TopLeft="797.75,430">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,5.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow.Paths[Lookup Match Output4]"
           TopLeft="807,781">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15757,79 +16010,31 @@ where [refTable].[Username] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output12]"
-          TopLeft="797.75,430">
+          Id="Package\Data Flow.Paths[Lookup Match Output3]"
+          TopLeft="1005,353">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,30"
+              EndConnector="0,34"
               Start="0,0"
-              End="0,22.5">
+              End="0,26.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.5" />
+                    End="0,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,5.4453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,7.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output11]"
-          TopLeft="1020.75,855">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,94"
-              Start="0,0"
-              End="0,86.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,86.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,37.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output10]"
-          TopLeft="794.444444444444,354.111111111111">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32.8888888888889"
-              Start="0,0"
-              End="0,25.3888888888889">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.3888888888889" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,6.88975694444445,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output9]"
+          Id="Package\Data Flow.Paths[Lookup Match Output2]"
           TopLeft="802,645">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15853,31 +16058,7 @@ where [refTable].[Username] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output8]"
-          TopLeft="797.25,502">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33"
-              Start="0,0"
-              End="0,25.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,6.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output7]"
+          Id="Package\Data Flow.Paths[Lookup Match Output1]"
           TopLeft="1011.75,633">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -15901,170 +16082,26 @@ where [refTable].[Username] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output6]"
-          TopLeft="1010,563">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,28"
-              Start="0,0"
-              End="0,20.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,4.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output5]"
-          TopLeft="1006.25,429">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,26"
-              Start="0,0"
-              End="0,18.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,3.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output4]"
-          TopLeft="805.25,714">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,25"
-              Start="0,0"
-              End="0,17.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,17.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,2.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output3]"
-          TopLeft="1007.25,497">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,24"
-              Start="0,0"
-              End="0,16.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,2.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output2]"
-          TopLeft="798,577">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,26"
-              Start="0,0"
-              End="0,18.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,3.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow.Paths[Lookup Match Output1]"
-          TopLeft="1017.5,709">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,27"
-              Start="0,0"
-              End="0,19.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,3.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Data Flow.Paths[Lookup Match Output]"
-          TopLeft="1020.25,778">
+          TopLeft="1020.75,855">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35"
+              EndConnector="0,94"
               Start="0,0"
-              End="0,27.5">
+              End="0,86.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.5" />
+                    End="0,86.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,7.9453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,37.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -16272,18 +16309,18 @@ where [refTable].[Username] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow.Paths[Derived Column Output5]"
-          TopLeft="636.25,1540">
+          TopLeft="516.944444444445,984.777777777778">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,40"
+              EndConnector="0,23.7777777777779"
               Start="0,0"
-              End="0,32.5">
+              End="0,16.2777777777779">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.5" />
+                    End="0,16.2777777777779" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16294,30 +16331,18 @@ where [refTable].[Username] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow.Paths[Derived Column Output4]"
-          TopLeft="1289.77777777778,1536.11111111111">
+          TopLeft="797.5,1235">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="15.7222222222224,42.2222222222222"
+              EndConnector="0,35"
               Start="0,0"
-              End="15.7222222222224,34.7222222222222">
+              End="0,27.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.1111111111111" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.1111111111111"
-                    Point2="0,21.1111111111111"
-                    Point3="4,21.1111111111111" />
-                  <mssgle:LineSegment
-                    End="11.7222222222224,21.1111111111111" />
-                  <mssgle:CubicBezierSegment
-                    Point1="11.7222222222224,21.1111111111111"
-                    Point2="15.7222222222224,21.1111111111111"
-                    Point3="15.7222222222224,25.1111111111111" />
-                  <mssgle:LineSegment
-                    End="15.7222222222224,34.7222222222222" />
+                    End="0,27.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16372,18 +16397,30 @@ where [refTable].[Username] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow.Paths[Derived Column Output1]"
-          TopLeft="797.5,1235">
+          TopLeft="1289.77777777778,1536.11111111111">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35"
+              EndConnector="15.7222222222224,42.2222222222222"
               Start="0,0"
-              End="0,27.5">
+              End="15.7222222222224,34.7222222222222">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.5" />
+                    End="0,17.1111111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.1111111111111"
+                    Point2="0,21.1111111111111"
+                    Point3="4,21.1111111111111" />
+                  <mssgle:LineSegment
+                    End="11.7222222222224,21.1111111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.7222222222224,21.1111111111111"
+                    Point2="15.7222222222224,21.1111111111111"
+                    Point3="15.7222222222224,25.1111111111111" />
+                  <mssgle:LineSegment
+                    End="15.7222222222224,34.7222222222222" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16394,18 +16431,18 @@ where [refTable].[Username] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow.Paths[Derived Column Output]"
-          TopLeft="516.944444444445,984.777777777778">
+          TopLeft="636.25,1540">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,23.7777777777779"
+              EndConnector="0,40"
               Start="0,0"
-              End="0,16.2777777777779">
+              End="0,32.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.2777777777779" />
+                    End="0,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -16546,29 +16583,6 @@ where [refTable].[Username] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Quality (Capacity)">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[InfoQuality]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Data Flow\Disruption Type (Maintenance)">
     <Properties>
       <Property>
@@ -16592,14 +16606,6 @@ where [refTable].[Username] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Maintenance">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Data Flow\Refinery (Maintenance)">
     <Properties>
       <Property>
@@ -16611,6 +16617,75 @@ where [refTable].[Username] = ?</property>
         <Name>UsedTableName</Name>
         <Value
           type="q3:string">[dbo].[Refinery]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\User (Capacity)">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[UserNames]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\Unit (Maintenance)">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[RefineryUnit]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\Unit (Capacity)">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[RefineryUnit]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -16672,29 +16747,6 @@ where [refTable].[Username] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Refinery (Capacity)">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Refinery]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Data Flow\Status (Capacity)">
     <Properties>
       <Property>
@@ -16718,7 +16770,7 @@ where [refTable].[Username] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Existing Capacity">
+    design-time-name="Package\Data Flow\Existing Maintenance">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -16731,7 +16783,7 @@ where [refTable].[Username] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\User (Maintenance)">
+    design-time-name="Package\Data Flow\Refinery (Capacity)">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -16741,99 +16793,7 @@ where [refTable].[Username] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[UserNames]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Unit (Capacity)">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[RefineryUnit]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Unit (Maintenance)">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[RefineryUnit]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Quality (Maintenance)">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[InfoQuality]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Unit Type (Maintenance)">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[UnitType]</Value>
+          type="q3:string">[dbo].[Refinery]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -16869,7 +16829,43 @@ where [refTable].[Username] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\User (Capacity)">
+    design-time-name="Package\Data Flow\Existing Capacity">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\Unit Type (Maintenance)">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[UnitType]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\User (Maintenance)">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -16880,6 +16876,52 @@ where [refTable].[Username] = ?</property>
         <Name>UsedTableName</Name>
         <Value
           type="q3:string">[dbo].[UserNames]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\Source (Capacity)">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Sources]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\Quality (Maintenance)">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[InfoQuality]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -16941,7 +16983,23 @@ where [refTable].[Username] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Source (Capacity)">
+    design-time-name="Package\Data Flow\Maintenance">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\Capacity">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow\Quality (Capacity)">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -16951,34 +17009,13 @@ where [refTable].[Username] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[Sources]</Value>
+          type="q3:string">[dbo].[InfoQuality]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q4:string">0</Value>
       </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Existing Maintenance">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow\Capacity">
-    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
