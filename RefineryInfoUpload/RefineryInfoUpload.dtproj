@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">LON-PC53</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAAAXs45xWCVGuR1feW5utcHPAAAAAASAAACgAAAAEAAAAJPGUgTz8aLk7HsruliBmMCIAAAAzoEhsCig/WK7+MGiMZT/yFZnrOvx6NPKKDBgY3v+iBGudcwqspB1rhs5LHy3AYfKJlAblpzzIvYmbBNqWG1b2I2ldj39IGyLmlWRfQiL7Z33ENTHPD8qrLjZxUDO5hCjpSTxt9sNDvjRV6sPs3Qrxy01z0/mwRhBCrywTFJuVtAPYp36IacIdhQAAACoy+9UdM/vivViywjHf0ZXhj4/sA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAACCfbyY/5XbWpwPzUrdtMSGAAAAAASAAACgAAAAEAAAACamg/trmdgTkowjXp1sghCIAAAARSNKMBNcwlU4/jFdmdYYkSVFru2Ogk0W81aMTg++g8Fzg/YC4UN2DkFTrF+NsWbMOArXD9l2NhwIF0S8a/Mb+BGLgTxvlSo8ltv8TIVur7E56t0oFnCuFztQVwXQiTq/Gw+j3WTM2dhG/eI7d9967+hcGkkrQbZVAKyDPatbRAP+f5fPCN1w4hQAAAB9wg+ZSYIo9mejNXM2XdRj5I6cwg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,10 +42,10 @@
                 <SSIS:Property SSIS:Name="Name">GetRefineryData</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">257</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">264</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{63AD8C7A-A88A-4BD5-A950-408D1F2D189B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1285296A-3B34-4D2D-8DC0-C4C28B2669AC}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -62,7 +62,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=arcssql\mssqlserverdev;Initial Catalog=RefineryInfo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=arcssql;Initial Catalog=RefineryInfo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -118,7 +118,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">targo.support.test@arcpet.co.uk</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">targo.support@arcpet.co.uk</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -132,7 +132,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">D:\RefineryInfo\RefineryUpload\Test\RefineryUpload_Test.xlsm</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">D:\RefineryInfo\RefineryUpload\RefineryUpload.xlsm</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -146,7 +146,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">arcsql\mssqlserverdev</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">arcsql</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
