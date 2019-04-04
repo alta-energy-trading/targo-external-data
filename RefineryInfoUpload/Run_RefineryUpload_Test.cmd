@@ -1,0 +1,1 @@
+DTExec /ISSERVER "\SSISDB\TargoData\RefineryInfoUpload\GetRefineryData.dtsx" /SERVER "arcsql\mssqlserverdev" /Envreference 9

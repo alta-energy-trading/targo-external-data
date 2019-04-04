@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">LON-PC53</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAAA2VD+bcW6jzzIR5tZeyoO3AAAAAASAAACgAAAAEAAAABzW5lhLdtKwPjLFLXVrsauIAAAAl33NE1dHmvtP1Hr4jnaniMMZfVQ1UFtgpJTIpsHgD/ozfObomJjaKxblxsimrWUamKbxoWsh2tj+lqAhAne73wjFkxMcE4BlZz5nfpHNOdNglwQ6chp5PqD3q7YmKkQwp4AZc+8zVua87JrM088pEdH2H/wewM/Q4tG+P/uVH6QjD+0kVjp7XBQAAABSCV6GDZXF59qfqOhEml3+PRwC9g==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAAAXs45xWCVGuR1feW5utcHPAAAAAASAAACgAAAAEAAAAJPGUgTz8aLk7HsruliBmMCIAAAAzoEhsCig/WK7+MGiMZT/yFZnrOvx6NPKKDBgY3v+iBGudcwqspB1rhs5LHy3AYfKJlAblpzzIvYmbBNqWG1b2I2ldj39IGyLmlWRfQiL7Z33ENTHPD8qrLjZxUDO5hCjpSTxt9sNDvjRV6sPs3Qrxy01z0/mwRhBCrywTFJuVtAPYp36IacIdhQAAACoy+9UdM/vivViywjHf0ZXhj4/sA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,10 +42,10 @@
                 <SSIS:Property SSIS:Name="Name">GetRefineryData</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">248</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">257</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{5130FF50-78DD-47D2-834C-E9F5BE6CC83C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{63AD8C7A-A88A-4BD5-A950-408D1F2D189B}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -132,7 +132,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">D:\Targo\RefineryUpload\Test\RefineryUpload_Test.xlsx</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">D:\RefineryInfo\RefineryUpload\Test\RefineryUpload_Test.xlsm</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -321,7 +321,24 @@
     </Manifest>
   </DeploymentModelSpecificContent>
   <ControlFlowParts />
-  <Miscellaneous />
+  <Miscellaneous>
+    <ProjectItem>
+      <Name>RefineryUpload.xlsm</Name>
+      <FullPath>RefineryUpload.xlsm</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>RefineryUpload_Test.xlsm</Name>
+      <FullPath>RefineryUpload_Test.xlsm</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Run_RefineryUpload.cmd</Name>
+      <FullPath>Run_RefineryUpload.cmd</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Run_RefineryUpload_Test.cmd</Name>
+      <FullPath>Run_RefineryUpload_Test.cmd</FullPath>
+    </ProjectItem>
+  </Miscellaneous>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
