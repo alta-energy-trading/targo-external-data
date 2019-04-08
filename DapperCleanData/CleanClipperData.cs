@@ -590,11 +590,9 @@ namespace DapperCleanData
 
         public int? GetCounterpartId(ClipperData clipperData)
         {
-            if (string.IsNullOrWhiteSpace(clipperData.OffTakeOwner) &&
-                string.IsNullOrWhiteSpace(clipperData.LoadOwner)) return null;
+            if (string.IsNullOrWhiteSpace(clipperData.LoadOwner) || clipperData.LoadOwner == "UNKNOWN") return null;
 
-            var name = !string.IsNullOrWhiteSpace(clipperData.OffTakeOwner)
-                ? clipperData.OffTakeOwner : clipperData.LoadOwner;
+            var name = clipperData.LoadOwner;
 
             var result = CounterpartsList.Any(x => x.Name.ToLower() == name.ToLower())
                 ? CounterpartsList.FirstOrDefault(x => x.Name.ToLower() == name.ToLower())?.Id
