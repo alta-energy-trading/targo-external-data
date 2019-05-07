@@ -8,7 +8,7 @@ namespace CleanData_UnitTest
     public class CleanDataUnitTest
     {
         #region Constant
-        private const string ConnectionString = "Data Source=STCHGS112;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true";
+        private const string ConnectionString = "Data Source=ARCSQL\\MSSQLSERVERDEV;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true";
         #endregion
 
         #region Test method
