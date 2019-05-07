@@ -57,18 +57,28 @@ namespace DapperCleanData
             List<Task> tasks = new List<Task>();
             foreach (var batch in newRows.Batch(1000))
             {
-                tasks.Add(Task.Run(() => CleanBatch(batch)));
-            }
-            var task = Task.WhenAll(tasks);
-            try
-            {
-                await task;
-            }
-            catch
-            {
-                throw new Exception(string.Join(", ",
-                    task?.Exception?.Flatten().InnerExceptions?.Select(e => e.Message)));
-            }
+                try
+                {
+                    await CleanBatch(batch);
+                }
+                catch (Exception e)
+                {
+
+                }
+            // tasks.Add(Task.Run(() => CleanBatch(batch)));
+        }
+           // var task = Task.WhenAll(tasks);
+            //try
+            //{
+            //    await task;
+            //}
+            //catch
+            //{
+            //    throw new Exception(string.Join(", ",
+            //        task?.Exception?.Flatten().InnerExceptions?.Select(e => e.Message)));
+            //}
+
+            
 
             InsertClipperCleanerData();
 
@@ -671,7 +681,7 @@ namespace DapperCleanData
             };
             
             string sqlLocation =
-                $"IF (SELECT top 1 Id from [Location] where Name = @name AND Source = @_sourceClipper) IS NULL INSERT INTO [Location] (Name, Source) VALUES (@name,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int)";
+                $"IF (SELECT top 1 Id from [Location] where Name = @name AND Source = @_sourceClipper) IS NULL BEGIN  INSERT INTO [Location] (Name, Source) VALUES (@name,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int) END ELSE (SELECT top 1 Id from [Location] where Name = @name AND Source = @_sourceClipper)";
             string sqlPort =
                     $"INSERT INTO Port (Id, Kind, IdParent) VALUES (@Id,@Kind,@portParent);";
 
@@ -700,7 +710,7 @@ namespace DapperCleanData
             };
 
             string sql =
-                $"IF (SELECT top 1 Id from [ShippingRoute] where Name = @name) IS NULL INSERT INTO ShippingRoute (Name) VALUES (@name); SELECT CAST(SCOPE_IDENTITY() as int)";
+                $"IF (SELECT top 1 Id from [ShippingRoute] where Name = @name) IS NULL BEGIN INSERT INTO ShippingRoute (Name) VALUES (@name); SELECT CAST(SCOPE_IDENTITY() as int) END ELSE (SELECT top 1 Id from [ShippingRoute] where Name = @name)";
 
             using (var connection = ConnectionFactory.GetOpenConnection())
             {
@@ -723,7 +733,7 @@ namespace DapperCleanData
             };
 
             string sql =
-                $"IF (SELECT top 1 Id from [Grade] where Name = @name) IS NULL INSERT INTO Grade (Name, IdParent, IdSource) VALUES (@name,@idParent,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int)";
+                $"IF (SELECT top 1 Id from [Grade] where Name = @name) IS NULL BEGIN  INSERT INTO Grade (Name, IdParent, IdSource) VALUES (@name,@idParent,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int) END ELSE (SELECT top 1 Id from [Grade] where Name = @name)";
 
             using (var connection = ConnectionFactory.GetOpenConnection())
             {
