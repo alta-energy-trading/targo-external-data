@@ -13,7 +13,7 @@ namespace ImportData.UnitTests
         private const string Key = @"iaut20xif17ly51xc5330n67";
         private const string Hash = @"vqDLzZiQwuKx4m7eplhguyEBZ0jMq70mDOhFG1cLQkl9xqfiPN1Fe9vBgkL8hntx";
         private const string Path = "/api/v2/movementsdata.php";
-       private const string Query = "Iraq_CO_2019_Present";
+       private const string Query = "FSU_CO_June18_P31";
         // private const string Query = "";
         private const string Domain = @"https://secure.petro-logistics.com";
         #endregion

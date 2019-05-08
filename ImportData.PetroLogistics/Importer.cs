@@ -47,7 +47,7 @@ namespace ImportData.PetroLogistics
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var commandText = "Select top 0 * into #temp_Movement from Movement";
+                var commandText = "Delete from Movement";
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -90,7 +90,7 @@ namespace ImportData.PetroLogistics
                             bcp.BulkCopyTimeout = 0;
                             using (var reader = ObjectReader.Create(toAdd))
                             {
-                                bcp.DestinationTableName = "#temp_Movement";
+                                bcp.DestinationTableName = "Movement";
                                 bcp.ColumnMappings.Add("query", "query");
                                 bcp.ColumnMappings.Add("tanker_name", "tanker_name");
                                 bcp.ColumnMappings.Add("tanker_imo", "tanker_imo");
@@ -138,187 +138,8 @@ namespace ImportData.PetroLogistics
                             throw new Exception(content);
                         }
                     }
-                    // merge here
-                    command.CommandText = @"
-                        Merge	Movement t
-                        Using	#temp_Movement s
-		                        On	s.cargo_id = t.cargo_id
-		                        And	ISNULL(s.supplier,'') = ISNULL(t.supplier,'')
-		                        And	ISNULL(s.middle_man,'') = ISNULL(t.middle_man,'')
-		                        And	ISNULL(s.customer,'') = ISNULL(t.customer,'')
-                        When Matched
-                        And	 (
-		                        s.tanker_name<> ISNULL(t.tanker_name,'')
-		                        or s.load_port<> ISNULL(t.load_port,'')
-		                        or s.tanker_imo<> ISNULL(t.tanker_imo,'')
-		                        or s.tanker_dwt<> ISNULL(t.tanker_dwt,'')
-		                        or s.tanker_flag<> ISNULL(t.tanker_flag,'')
-		                        or s.tanker_owner<> ISNULL(t.tanker_owner,'')
-		                        or s.load_terminal<> ISNULL(t.load_terminal,'')
-		                        or s.grade_confidence<> ISNULL(t.grade_confidence,'')
-		                        or s.company_confidence<> ISNULL(t.company_confidence,'')
-		                        or s.quality_category<> ISNULL(t.quality_category,'')
-		                        or s.transit_time<> ISNULL(t.transit_time,'')
-		                        or s.load_country<> ISNULL(t.load_country,'')
-		                        or s.report_group<> ISNULL(t.report_group,'')
-		                        or s.load_port_area<> ISNULL(t.load_port_area,'')
-                                or s.load_port_date <> ISNULL(t.load_port_date,'')
-		                        or s.qty_tonnes<> ISNULL(t.qty_tonnes,'')
-		                        or s.qty_barrels<> ISNULL(t.qty_barrels,'')
-		                        or s.c_f<> ISNULL(t.c_f,'')
-		                        or s.cargo_type<> ISNULL(t.cargo_type,'')
-		                        or s.cargo_grade<> ISNULL(t.cargo_grade,'')
-		                        or s.pc<> ISNULL(t.pc,'')
-		                        or s.discharge_port_date<> ISNULL(t.discharge_port_date,'')
-		                        or s.discharge_port<> ISNULL(t.discharge_port,'')
-		                        or s.second_discharge_port<> ISNULL(t.second_discharge_port,'')
-		                        or s.via<> ISNULL(t.via,'')
-		                        or s.discharge_country<> ISNULL(t.discharge_country,'')
-		                        or s.discharge_area<> ISNULL(t.discharge_area,'')
-		                        or s.supplier_note<> ISNULL(t.supplier_note,'')
-		                        or s.customer_note<> ISNULL(t.customer_note,'')
-		                        or s.note<> ISNULL(t.note,'')
-		                        or s.client_cargo_status<> ISNULL(t.client_cargo_status,'')
-                        )
-                        Then
-                        Update
-                        Set t.tanker_name= s.tanker_name
-                        , t.load_port= s.load_port
-                        , t.tanker_imo= S.tanker_imo
-		                , t.tanker_dwt= S.tanker_dwt
-		                , t.tanker_flag= S.tanker_flag
-		                , t.tanker_owner= S.tanker_owner
-		                , t.load_terminal= S.load_terminal
-		                , t.grade_confidence= S.grade_confidence
-		                , t.company_confidence= S.company_confidence
-		                , t.quality_category= S.quality_category
-		                , t.transit_time= S.transit_time
-                        , t.load_country= s.load_country
-                        , t.report_group= s.report_group
-                        , t.load_port_area= s.load_port_area
-                        , t.qty_tonnes= s.qty_tonnes
-                        , t.qty_barrels= s.qty_barrels
-                        , t.c_f= s.c_f
-                        , t.cargo_type= s.cargo_type
-                        , t.cargo_grade= s.cargo_grade
-                        , t.pc= s.pc
-                        , t.load_port_date = s.load_port_date
-                        , t.discharge_port_date= s.discharge_port_date
-                        , t.discharge_port= s.discharge_port
-                        , t.second_discharge_port= s.second_discharge_port
-                        , t.via= s.via
-                        , t.discharge_country= s.discharge_country
-                        , t.discharge_area= s.discharge_area
-                        , t.supplier_note= s.supplier_note
-                        , t.customer_note= s.customer_note
-                        , t.note= s.note
-                        , t.client_cargo_status= s.client_cargo_status
-                        When Not Matched By Target
-                        Then
-                        Insert (
-	                        cargo_id
-	                        , tanker_name
-                            , query
-	                        , load_port
-                            , tanker_imo
-		                    , tanker_dwt
-		                    , tanker_flag
-		                    , tanker_owner
-		                    , load_terminal
-		                    , grade_confidence
-		                    , company_confidence
-		                    , quality_category
-		                    , transit_time
-	                        , load_country
-	                        , report_group
-	                        , load_port_area
-                            , load_port_date
-	                        , qty_tonnes
-	                        , qty_barrels
-	                        , c_f
-	                        , cargo_type
-	                        , cargo_grade
-	                        , pc
-	                        , discharge_port_date
-	                        , discharge_port
-	                        , second_discharge_port
-	                        , via
-	                        , discharge_country
-	                        , discharge_area
-	                        , supplier
-	                        , middle_man
-	                        , customer
-	                        , supplier_note
-	                        , customer_note
-	                        , note
-	                        , client_cargo_status
-                        )
-                        Values (
-	                        cargo_id
-	                        , s.tanker_name
-                            , s.query
-	                        , s.load_port
-                            , S.tanker_imo
-		                    , S.tanker_dwt
-		                    , S.tanker_flag
-		                    , S.tanker_owner
-		                    , S.load_terminal
-		                    , S.grade_confidence
-		                    , S.company_confidence
-		                    , S.quality_category
-		                    , S.transit_time
-	                        , s.load_country
-	                        , s.report_group
-	                        , s.load_port_area
-                            , s.load_port_date
-	                        , s.qty_tonnes
-	                        , s.qty_barrels
-	                        , s.c_f
-	                        , s.cargo_type
-	                        , s.cargo_grade
-	                        , s.pc
-	                        , s.discharge_port_date
-	                        , s.discharge_port
-	                        , s.second_discharge_port
-	                        , s.via
-	                        , s.discharge_country
-	                        , s.discharge_area
-	                        , s.supplier
-	                        , s.middle_man
-	                        , s.customer
-	                        , s.supplier_note
-	                        , s.customer_note
-	                        , s.note
-	                        , s.client_cargo_status
-                        )
-                        When Not Matched By Source
-                        And t.query in (@queries)
-                        Then Delete
-                        OUTPUT
-                        $action,
-                        inserted.cargo_id,
-                        deleted.cargo_id;
-                        DROP TABLE #temp_Movement";
 
-                    command.Parameters.Add("@queries", SqlDbType.VarChar);
-                    command.Parameters["@queries"].Value = queries.TrimEnd(',');
-
-                    SqlDataReader sqlDataReader = command.ExecuteReader();
-
-                    int inserted = 0,
-                        updated = 0,
-                        deleted = 0;
-                    while (sqlDataReader.Read())
-                    {
-                        if (sqlDataReader.GetString(0).ToLower() == "insert") inserted++;
-                        if (sqlDataReader.GetString(0).ToLower() == "update") updated++;
-                        if (sqlDataReader.GetString(0).ToLower() == "delete") deleted++;
-                    }
                     connection.Close();
-
-                    WriteToLog($"Inserted: {inserted}");
-                    WriteToLog($"Updated: {updated}");
-                    WriteToLog($"Deleted: {deleted}");
                 }
             }
             WriteToLog($"Complete.");
