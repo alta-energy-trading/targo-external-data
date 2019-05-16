@@ -67,7 +67,7 @@ namespace ImportData.PetroLogistics
 
                         queries += $"'{r.QUERY}',";
                         var content = string.Empty;
-                        
+
                         try
                         {
                             content = new FetchReport(r).getreport();
@@ -139,11 +139,22 @@ namespace ImportData.PetroLogistics
                         }
                     }
 
+                    commandText = @"Update Movement Set MovementHash = CONVERT(VARCHAR(50), HASHBYTES(
+                                'SHA1'
+				                    , UPPER(LTRIM(RTRIM(ISNULL(cargo_id, '')))) + '|' +
+                                        UPPER(LTRIM(RTRIM(ISNULL(supplier, '')))) + '|' +
+                                        UPPER(LTRIM(RTRIM(ISNULL(customer, '')))) + '|' +
+                                        UPPER(LTRIM(RTRIM(ISNULL(middle_man, ''))))
+			                    ),1)";
+
+                    command.CommandText = commandText;
+                    command.ExecuteNonQuery();
+
                     connection.Close();
                 }
             }
             WriteToLog($"Complete.");
-        }     
+        }
 
         public void WriteToLog(string msg)
         {
