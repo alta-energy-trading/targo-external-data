@@ -152,7 +152,7 @@ BEGIN TRY
 				AND me.MatchWholeWord = 1
 			LEFT JOIN MappingException meNull
 				ON	meNull.GradeName = petLog.cargo_grade
-				AND meNull.PortName = NULL
+				AND meNull.PortName is NULL
 			LEFT JOIN MappingException meLike
 				ON	meLike.GradeName = petLog.cargo_grade
 				AND petLog.load_port like meLike.PortName
