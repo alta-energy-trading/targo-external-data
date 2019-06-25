@@ -10,7 +10,7 @@ DECLARE @rows INT
 
 BEGIN TRY
 	BEGIN -- Get and lookup data
-		SELECT 
+				SELECT 
 			targoLoadTerminal.Name [LoadPoint]
 			, targoLoadTerminal.Id [IdLoadPoint]
 			, petLog.load_terminal [PetLog_load_terminal]
@@ -75,7 +75,7 @@ BEGIN TRY
 				AND loadPortMap.IdMapType = locationMapType.Id
 			LEFT JOIN Mapping dischargePortMap
 				ON  dischargePortMap.ExternalValue = petLog.discharge_port
-				AND loadPortMap.IdMapType = locationMapType.Id
+				AND dischargePortMap.IdMapType = locationMapType.Id
 			LEFT JOIN Mapping loadCountryMap
 				ON  loadCountryMap.ExternalValue = petLog.load_country
 				AND loadCountryMap.IdMapType = locationMapType.Id
@@ -146,16 +146,8 @@ BEGIN TRY
 						AND a.Kind = 3
 			) targoDischargeCountry
 				ON	targoDischargeCountry.Name = COALESCE(dischargeCountryMap.TargoValue,petLog.discharge_country)
-			LEFT JOIN MappingException me
-				ON  me.GradeName = petLog.cargo_grade
-				AND me.PortName = petLog.load_port
-			LEFT JOIN MappingException meNull
-				ON  meNull.GradeName = petLog.cargo_grade
-				AND meNull.PortName IS NULL
-			LEFT JOIN Grade gradeAfterException
-				ON	gradeAfterException.Id = COALESCE(me.IdTargoGrade, meNull.IdTargoGrade)
 			LEFT JOIN Grade targoGrade
-				ON	targoGrade.Name = COALESCE(gradeAfterException.Name, gradeMap.TargoValue, petLog.cargo_grade)
+				ON	targoGrade.Name = COALESCE(gradeMap.TargoValue, petLog.cargo_grade)
 			LEFT JOIN Counterpart targoCounterpart
 				ON	targoCounterpart.Name = COALESCE(customerMap.TargoValue, petLog.customer)
 			LEFT JOIN Counterpart targoEquity
@@ -166,6 +158,7 @@ BEGIN TRY
 				ON	st.Name = 'Stem'
 			LEFT JOIN Source src
 				ON	src.IdType = st.Id
+				AND	src.Name = 'PetroLogistics'		
 				AND	src.Name = 'PetroLogistics'		
 	
 		SET @rows = @@ROWCOUNT
@@ -499,6 +492,7 @@ BEGIN TRY
 						ON	src.Name = 'PetroLogistics'
 						AND	src.IdType = st.Id
 						AND src.Id = s.Source
+
 			)
 		INSERT INTO 
 			Deal (
@@ -580,6 +574,23 @@ BEGIN CATCH
 
     Declare @ermessage nvarchar(2048), @erseverity int, @erstate int, @erline int;
 	Select @ermessage = CONCAT('Line Number: ', ERROR_LINE(), '. ', ERROR_MESSAGE()), @erseverity = ERROR_SEVERITY(), @erstate = ERROR_STATE(); 
+	
+	DECLARE @errorbody NVARCHAR(MAX) = '<html><body><p>Dear Analytics Admin,<p>'
+	DECLARE @errorrecipients NVARCHAR(100) = CASE @@SERVERNAME WHEN 'ARCSQL' THEN 'targo.support@arcpet.co.uk' ELSE 'targo.support.test@arcpet.co.uk' END
+
+	BEGIN -- Send error email	
+		SET @errorbody = '<html><body><p>Dear Analytics Admin,<p>'
+		SET @errorbody = @errorbody + '<p>Cleaning PetroLogistics failed with the following error:</p><p>' + @ermessage + '</p>
+		<p>Best Regards,</p><p>Analytics Support</p></body></html>'
+
+		EXEC msdb.dbo.sp_send_dbmail
+		@profile_name = 'Targo'
+		, @body = @errorbody
+		, @body_format = 'HTML'
+		, @recipients = @errorrecipients
+		, @subject = 'Error - Targo - PetroLogistics'		
+	END
+
 	raiserror(@ermessage, @erseverity,@erstate)
 END CATCH
 GO
