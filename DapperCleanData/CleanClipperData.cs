@@ -832,7 +832,7 @@ namespace DapperCleanData
             {
                 if (portName.ToLower() == "ceyhan botas" ||
                     portName.ToLower() == "mersin" ||
-                    portName.ToLower().Contains("Dortyol"))
+                    portName.ToLower().Contains("dortyol"))
                 {
                     if (GradesList.Any(g => g.Name.ToLower() == "kirkuk"))
                         return GradesList.FirstOrDefault(g => g.Name.ToLower() == "kirkuk")?.Name;
@@ -845,13 +845,13 @@ namespace DapperCleanData
             }
 
             if (clipperGrade.ToLower() == "canadian crude" ||
-                clipperGrade.ToLower() == "GIRASSOL" ||
-                clipperGrade.ToLower() == "HEBRON" ||
-                clipperGrade.ToLower() == "HIBERNIA" ||
-                clipperGrade.ToLower() == "HUNGO" ||
-                clipperGrade.ToLower() == "SANGOS" ||
-                clipperGrade.ToLower() == "TERRA NOVA" ||
-                clipperGrade.ToLower() == "WHITE ROSE")
+                clipperGrade.ToUpper() == "GIRASSOL" ||
+                clipperGrade.ToUpper() == "HEBRON" ||
+                clipperGrade.ToUpper() == "HIBERNIA" ||
+                clipperGrade.ToUpper() == "HUNGO" ||
+                clipperGrade.ToUpper() == "SANGOS" ||
+                clipperGrade.ToUpper() == "TERRA NOVA" ||
+                clipperGrade.ToUpper() == "WHITE ROSE")
             {
                 if (portName.ToLower().Contains("whiffen"))
                 {
