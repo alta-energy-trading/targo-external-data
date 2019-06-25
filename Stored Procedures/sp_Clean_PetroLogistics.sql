@@ -146,8 +146,23 @@ BEGIN TRY
 						AND a.Kind = 3
 			) targoDischargeCountry
 				ON	targoDischargeCountry.Name = COALESCE(dischargeCountryMap.TargoValue,petLog.discharge_country)
+			LEFT JOIN MappingException me 
+				ON	me.GradeName = petLog.cargo_grade
+				AND me.PortName = petLog.load_port
+				AND me.MatchWholeWord = 1
+			LEFT JOIN MappingException meNull
+				ON	meNull.GradeName = petLog.cargo_grade
+				AND meNull.PortName = NULL
+			LEFT JOIN MappingException meLike
+				ON	meLike.GradeName = petLog.cargo_grade
+				AND petLog.load_port like meLike.PortName
+				AND meLike.MatchWholeWord = 0
+			LEFT JOIN Grade gradeResolved 
+				ON	gradeResolved.Id = COALESCE(meLike.IdTargoGrade, me.IdTargoGrade, meNull.IdTargoGrade)
+			LEFT JOIN Grade targoGradeResolved
+				ON	targoGradeResolved.Id = gradeResolved.Id
 			LEFT JOIN Grade targoGrade
-				ON	targoGrade.Name = COALESCE(gradeMap.TargoValue, petLog.cargo_grade)
+				ON	targoGrade.Name = COALESCE(targoGradeResolved.Name, gradeMap.TargoValue, petLog.cargo_grade)
 			LEFT JOIN Counterpart targoCounterpart
 				ON	targoCounterpart.Name = COALESCE(customerMap.TargoValue, petLog.customer)
 			LEFT JOIN Counterpart targoEquity
@@ -158,7 +173,6 @@ BEGIN TRY
 				ON	st.Name = 'Stem'
 			LEFT JOIN Source src
 				ON	src.IdType = st.Id
-				AND	src.Name = 'PetroLogistics'		
 				AND	src.Name = 'PetroLogistics'		
 	
 		SET @rows = @@ROWCOUNT
