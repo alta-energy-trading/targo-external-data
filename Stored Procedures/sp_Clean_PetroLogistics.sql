@@ -202,21 +202,21 @@ BEGIN TRY
 					, 'Port' [Type]
 				FROM 
 					#temp_PetLog_Cleaned
-				WHERE IdLoadPort IS NULL AND PetLog_load_port IS NOT NULL
+				WHERE IdLoadPort IS NULL AND NULLIF(PetLog_load_port,'Not Known') IS NOT NULL
 			UNION
 				SELECT DISTINCT 
 					PetLog_discharge_port [Name]
 					, 'Port' [Type]
 				FROM 
 					#temp_PetLog_Cleaned
-				WHERE IdDischargePort IS NULL AND PetLog_discharge_port IS NOT NULL
+				WHERE IdDischargePort IS NULL AND NULLIF(PetLog_discharge_port,'Not Known') IS NOT NULL
 			UNION
 				SELECT DISTINCT 
 					PetLog_discharge_country [Name]
 					, 'Country' [Type]
 				FROM 
 					#temp_PetLog_Cleaned
-				WHERE IdDischargeCountry IS NULL AND PetLog_discharge_country IS NOT NULL
+				WHERE IdDischargeCountry IS NULL AND NULLIF(PetLog_discharge_country,'Not Known') IS NOT NULL
 			UNION
 				SELECT DISTINCT 
 					PetLog_load_country [Name]
@@ -572,19 +572,19 @@ BEGIN TRY
 		END
 	END
 
-	IF @debug = 0 -- Don't run this if debugging
-	BEGIN -- Send summary email	
-		SET @body = '<html><body><p>Dear Targo Admin,<p>'
-		SET @body = @body + '<p>PetroLogistics cleaning job has completed</p>
-		<p>Best Regards,</p><p>Targo Support</p></body></html>'
+	--IF @debug = 0 -- Don't run this if debugging
+	--BEGIN -- Send summary email	
+	--	SET @body = '<html><body><p>Dear Targo Admin,<p>'
+	--	SET @body = @body + '<p>PetroLogistics cleaning job has completed</p>
+	--	<p>Best Regards,</p><p>Targo Support</p></body></html>'
 
-		EXEC msdb.dbo.sp_send_dbmail
-		@profile_name = 'Targo'
-		, @body = @body
-		, @body_format = 'HTML'
-		, @recipients = @recipients
-		, @subject = 'Clean PetroLogistics'		
-	END
+	--	EXEC msdb.dbo.sp_send_dbmail
+	--	@profile_name = 'Targo'
+	--	, @body = @body
+	--	, @body_format = 'HTML'
+	--	, @recipients = @recipients
+	--	, @subject = 'Clean PetroLogistics'		
+	--END
 
 END TRY
 BEGIN CATCH
