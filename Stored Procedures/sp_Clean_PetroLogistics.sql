@@ -203,7 +203,6 @@ BEGIN TRY
 				FROM 
 					#temp_PetLog_Cleaned
 				WHERE IdLoadPort IS NULL AND PetLog_load_port IS NOT NULL
-				AND PetLog_load_port <> 'Not known'
 			UNION
 				SELECT DISTINCT 
 					PetLog_discharge_port [Name]
@@ -211,7 +210,6 @@ BEGIN TRY
 				FROM 
 					#temp_PetLog_Cleaned
 				WHERE IdDischargePort IS NULL AND PetLog_discharge_port IS NOT NULL
-				AND PetLog_discharge_port <> 'Not known'
 			UNION
 				SELECT DISTINCT 
 					PetLog_discharge_country [Name]
@@ -219,7 +217,6 @@ BEGIN TRY
 				FROM 
 					#temp_PetLog_Cleaned
 				WHERE IdDischargeCountry IS NULL AND PetLog_discharge_country IS NOT NULL
-				AND PetLog_discharge_country <> 'Not known'
 			UNION
 				SELECT DISTINCT 
 					PetLog_load_country [Name]
@@ -227,7 +224,6 @@ BEGIN TRY
 				FROM 
 					#temp_PetLog_Cleaned
 				WHERE IdLoadCountry IS NULL AND NULLIF(PetLog_load_country,'Not Known') IS NOT NULL
-				AND PetLog_load_country <> 'Not known'
 			-- Get Grades not found in Targo
 			UNION
 				SELECT DISTINCT
@@ -237,7 +233,6 @@ BEGIN TRY
 					#temp_PetLog_Cleaned
 				WHERE 
 					IdGrade IS NULL AND PetLog_cargo_grade IS NOT NULL
-					AND PetLog_cargo_grade <> 'Not known'
 			-- Get Counterparts not found in Targo
 			UNION
 				SELECT DISTINCT
@@ -247,7 +242,6 @@ BEGIN TRY
 					#temp_PetLog_Cleaned
 				WHERE 
 					IdCounterpart IS NULL AND PetLog_customer IS NOT NULL
-					AND PetLog_customer <> 'Not known'
 			UNION
 				SELECT DISTINCT
 					PetLog_supplier
@@ -256,7 +250,6 @@ BEGIN TRY
 					#temp_PetLog_Cleaned
 				WHERE 
 					IdEquity IS NULL AND PetLog_supplier IS NOT NULL
-					AND PetLog_supplier <> 'Not known'
 				-- Get Vessels not found in Targo
 			UNION
 				SELECT DISTINCT
@@ -364,6 +357,26 @@ BEGIN TRY
 
 		SET @rows = @@ROWCOUNT
 		PRINT CAST(@rows as VARCHAR(10)) + ' rows added to stem staging table'
+	END
+
+	IF @debug = 0 -- Don't run this if debugging
+	BEGIN -- Delete Deals
+		DELETE
+		FROM	
+			Deal
+		WHERE 
+			IdStem IN (
+				SELECT 
+					s.Id 
+				FROM
+					Stem s
+					LEFT JOIN SourceType st
+						ON	st.Name = 'Stem'
+					INNER JOIN Source src 
+						ON	src.Name = 'PetroLogistics'
+						AND	src.IdType = st.Id
+						AND src.Id = s.Source
+			)		
 	END
 
 	IF @debug = 0 -- Don't run this if debugging
@@ -497,24 +510,7 @@ BEGIN TRY
 	END
 
 	IF @debug = 0 -- Don't run this if debugging
-	BEGIN -- Update Deals so Current Owner column is populated in CargoAnalysis
-		DELETE
-		FROM	
-			Deal
-		WHERE 
-			IdStem IN (
-				SELECT 
-					s.Id 
-				FROM
-					Stem s
-					LEFT JOIN SourceType st
-						ON	st.Name = 'Stem'
-					INNER JOIN Source src 
-						ON	src.Name = 'PetroLogistics'
-						AND	src.IdType = st.Id
-						AND src.Id = s.Source
-
-			)
+	BEGIN -- Update Deals so Current Owner column is populated in CargoAnalysis	
 		INSERT INTO 
 			Deal (
 				IdStem
@@ -539,6 +535,7 @@ BEGIN TRY
 			m.IdCounterpart IS NOT NULL
 
 	END
+
 
 	IF @debug = 0 -- Don't run this if debugging
 	BEGIN -- Update Cargo Analysis
