@@ -189,6 +189,7 @@ BEGIN TRY
 				FROM 
 					#temp_PetLog_Cleaned
 				WHERE IdLoadPort IS NULL AND PetLog_load_port IS NOT NULL
+				AND PetLog_load_port <> 'Not known'
 			UNION
 				SELECT DISTINCT 
 					PetLog_discharge_port [Name]
@@ -196,6 +197,7 @@ BEGIN TRY
 				FROM 
 					#temp_PetLog_Cleaned
 				WHERE IdDischargePort IS NULL AND PetLog_discharge_port IS NOT NULL
+				AND PetLog_discharge_port <> 'Not known'
 			UNION
 				SELECT DISTINCT 
 					PetLog_discharge_country [Name]
@@ -203,6 +205,7 @@ BEGIN TRY
 				FROM 
 					#temp_PetLog_Cleaned
 				WHERE IdDischargeCountry IS NULL AND PetLog_discharge_country IS NOT NULL
+				AND PetLog_discharge_country <> 'Not known'
 			UNION
 				SELECT DISTINCT 
 					PetLog_load_country [Name]
@@ -210,6 +213,7 @@ BEGIN TRY
 				FROM 
 					#temp_PetLog_Cleaned
 				WHERE IdLoadCountry IS NULL AND NULLIF(PetLog_load_country,'Not Known') IS NOT NULL
+				AND PetLog_load_country <> 'Not known'
 			-- Get Grades not found in Targo
 			UNION
 				SELECT DISTINCT
@@ -219,6 +223,7 @@ BEGIN TRY
 					#temp_PetLog_Cleaned
 				WHERE 
 					IdGrade IS NULL AND PetLog_cargo_grade IS NOT NULL
+					AND PetLog_cargo_grade <> 'Not known'
 			-- Get Counterparts not found in Targo
 			UNION
 				SELECT DISTINCT
@@ -228,6 +233,7 @@ BEGIN TRY
 					#temp_PetLog_Cleaned
 				WHERE 
 					IdCounterpart IS NULL AND PetLog_customer IS NOT NULL
+					AND PetLog_customer <> 'Not known'
 			UNION
 				SELECT DISTINCT
 					PetLog_supplier
@@ -236,6 +242,7 @@ BEGIN TRY
 					#temp_PetLog_Cleaned
 				WHERE 
 					IdEquity IS NULL AND PetLog_supplier IS NOT NULL
+					AND PetLog_supplier <> 'Not known'
 				-- Get Vessels not found in Targo
 			UNION
 				SELECT DISTINCT
