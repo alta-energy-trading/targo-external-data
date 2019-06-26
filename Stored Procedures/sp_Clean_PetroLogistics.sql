@@ -1,5 +1,6 @@
 USE [STG_Targo]
 GO
+
 IF OBJECT_ID('[dbo].[sp_Clean_PetroLogistics]','p') IS NOT NULL
 DROP PROC [dbo].[sp_Clean_PetroLogistics]
 GO
@@ -79,9 +80,11 @@ BEGIN TRY
 			LEFT JOIN Mapping loadCountryMap
 				ON  loadCountryMap.ExternalValue = petLog.load_country
 				AND loadCountryMap.IdMapType = locationMapType.Id
+				AND loadCountryMap.IdSource <> 3
 			LEFT JOIN Mapping dischargeCountryMap
 				ON  dischargeCountryMap.ExternalValue = petLog.discharge_country
 				AND dischargeCountryMap.IdMapType = locationMapType.Id
+				AND dischargeCountryMap.IdSource <> 3
 			LEFT JOIN Mapping gradeMap
 				ON  gradeMap.ExternalValue = petLog.cargo_grade
 				AND gradeMap.IdMapType = gradeMapType.Id
