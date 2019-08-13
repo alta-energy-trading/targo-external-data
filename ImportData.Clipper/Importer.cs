@@ -206,7 +206,7 @@ namespace ImportData.Clipper
                     bcp.ColumnMappings.Add("WeightMt", "WeightMt");
                     bcp.WriteToServer(reader);
                 }
-                return new TaskResult(toAdd.Count, toRemove.Count, toRemove.Count == 10000 ? response.Records.OrderByDescending(o => o.DateNum).First().DateNum : 0);
+                return new TaskResult(toAdd.Count, toRemove.Count, response.Records.Count > 0 ? response.Records.OrderByDescending(o => o.DateNum).First().DateNum : 0);
             }
         }
 

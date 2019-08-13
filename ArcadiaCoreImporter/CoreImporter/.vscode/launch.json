@@ -29,7 +29,6 @@
             "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/CoreImporter.dll",
             "console": "integratedTerminal",
             "args":[
-                "-e", "Test"
             ]
         }
     ]

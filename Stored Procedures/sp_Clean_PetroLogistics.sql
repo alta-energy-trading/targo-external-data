@@ -80,11 +80,11 @@ BEGIN TRY
 			LEFT JOIN Mapping loadCountryMap
 				ON  loadCountryMap.ExternalValue = petLog.load_country
 				AND loadCountryMap.IdMapType = locationMapType.Id
-				AND loadCountryMap.IdSource <> 3
+				AND ISNULL(loadCountryMap.IdSource,0) <> 3
 			LEFT JOIN Mapping dischargeCountryMap
 				ON  dischargeCountryMap.ExternalValue = petLog.discharge_country
 				AND dischargeCountryMap.IdMapType = locationMapType.Id
-				AND dischargeCountryMap.IdSource <> 3
+				AND ISNULL(loadCountryMap.IdSource,0) <> 3
 			LEFT JOIN Mapping gradeMap
 				ON  gradeMap.ExternalValue = petLog.cargo_grade
 				AND gradeMap.IdMapType = gradeMapType.Id
@@ -575,19 +575,19 @@ BEGIN TRY
 		END
 	END
 
-	--IF @debug = 0 -- Don't run this if debugging
-	--BEGIN -- Send summary email	
-	--	SET @body = '<html><body><p>Dear Targo Admin,<p>'
-	--	SET @body = @body + '<p>PetroLogistics cleaning job has completed</p>
-	--	<p>Best Regards,</p><p>Targo Support</p></body></html>'
+	IF @debug = 0 -- Don't run this if debugging
+	BEGIN -- Send summary email	
+		SET @body = '<html><body><p>Dear Targo Admin,<p>'
+		SET @body = @body + '<p>PetroLogistics cleaning job has completed</p>
+		<p>Best Regards,</p><p>Targo Support</p></body></html>'
 
-	--	EXEC msdb.dbo.sp_send_dbmail
-	--	@profile_name = 'Targo'
-	--	, @body = @body
-	--	, @body_format = 'HTML'
-	--	, @recipients = @recipients
-	--	, @subject = 'Clean PetroLogistics'		
-	--END
+		EXEC msdb.dbo.sp_send_dbmail
+		@profile_name = 'Targo'
+		, @body = @body
+		, @body_format = 'HTML'
+		, @recipients = @recipients
+		, @subject = 'Clean PetroLogistics'		
+	END
 
 END TRY
 BEGIN CATCH
