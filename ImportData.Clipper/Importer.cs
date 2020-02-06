@@ -49,6 +49,7 @@ namespace ImportData.Clipper
                     using (var handler = BuildHttpRequestHandler(_user, _pass))
                     using (var client = new HttpClient(handler))
                     {
+                        client.Timeout = TimeSpan.FromMinutes(30);
                         string encoded =
                             Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(_user + ":" + _pass));
                         client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
@@ -63,7 +64,9 @@ namespace ImportData.Clipper
                         try
                         {
                             WriteToLog($"Getting records where Datenum > {maxDateNum}");
+                            Debug.Write(url);
                             content = client.GetStringAsync(url).Result;
+                            
                         }
                         catch (AggregateException ex)
                         {
