@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">STUKLW042A</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5vpBrmBqREWzUiLDst3OPwAAAAACAAAAAAADZgAAwAAAABAAAAB98zpKvoS2NkWfFKZXL549AAAAAASAAACgAAAAEAAAAPpRkjWpywE5bdswgkrFK/6IAAAAdDLdKSLB+ycumldLGZCe3S9M6wDOhvUCmE3e2Vv2w4eQ/LKuosbiaOmCXMor68/3IZP7OVad3173z3q2tpzxS69ZLBbflt7aPRvouVF5WOCtlXyLU0UiViqcMOesD8M30wfqJKBNr4uL+jSoax3KJNtBNaJFRZ7Pj4AGBbrW7XSVtQqdsS2nExQAAACi5BsLzFm8cQwSkmX7UDvbrmgF6g==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMI1XUTE91EW4DZRdurLoRwAAAAACAAAAAAADZgAAwAAAABAAAADhFgMlZA6c+AntlA18yLQ1AAAAAASAAACgAAAAEAAAANTlYsjUVPHfGGRM+bF/UNiIAAAAsWu+714DfU+hTVahoy2ZjUXTPkUPbRVAuI/BhPoyLe7rcSCAPDfA2mGU2Nn1OpsfGMHT5jERHHIvv/HiaNOrUsbweO9m3docRTrLMgG/gvDrnhhgf92Qhwf2/9GhqWu8sBOIf9mjFefOeUwOUpmlkKNXU70rN0z9ZA+OeoO/qS1fcDa8lFY2FhQAAAC5/QW5AF6u7LB5RJ0JP2EZyOtYQQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,10 +42,10 @@
                 <SSIS:Property SSIS:Name="Name">CleanClipperData</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">262</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">265</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{486D50A1-F3E6-4710-A0A9-490A2E162FF1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{27289A1D-2588-4C38-8398-6C241E43C93D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -61,7 +61,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=arcsql\mssqlserverdev;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=lon-pc53;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -129,7 +129,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\Temp\dlls\CleanClipperData</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Dev\Projects\TargoExternalData\CleanData_Service\bin\Debug</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -142,7 +142,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">arcsql\mssqlserverdev</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">lon-pc53</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -246,7 +246,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=ARCSQL\MSSQLSERVERDEV;Initial Catalog=STG_Targo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=lon-pc53;Initial Catalog=STG_Targo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -305,7 +305,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">ARCSQL\MSSQLSERVERDEV</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">lon-pc53</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

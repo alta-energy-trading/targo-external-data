@@ -402,7 +402,7 @@ namespace DapperCleanData
 		                    , cast( Projection as varchar(5)) Projection 
 		                    , cast( Route as varchar(50)) Route 
 		                    , cast( Shipper as varchar(50)) Shipper 
-		                    , cast( Source as varchar(50)) Source 
+		                    , cast( rawdata.Source as varchar(50)) Source 
 		                    , Speed
 		                    , cast( Vessel as varchar(50)) Vessel 
 		                    , ClipperDataRowVersion
@@ -415,32 +415,55 @@ namespace DapperCleanData
 			                    On rawdata.Rownum = newrows.rownum	
                             Left Join MapType mt 
 			                    On	mt.Name = 'Location'
+		                    Left Join Mapping mGradeCountry
+			                    On	mGradeCountry.IdMapType = mt.Id
+			                    And	mGradeCountry.ExternalValue = rawData.GradeCountry
+		                    Left Join Mapping mGradeRegion
+			                    On	mGradeRegion.IdMapType = mt.Id
+			                    And	mGradeRegion.ExternalValue = rawData.GradeRegion
+		                    LEFT JOIN Location lGradeCountry
+			                    ON  lGradeCountry.Name = Coalesce(mGradeCountry.TargoValue, rawdata.GradeCountry) 
+			                    AND lGradeCountry.Id in (Select Id From Area Where kind = 3)
+			                    AND Coalesce(mGradeCountry.TargoValue, rawdata.GradeCountry) not in (Select distinct CountryName from RegionView WHERE CountryName  <> '' and RegionName IS NULL)
+		                    LEFT JOIN (
+		                        SELECT 
+			                        Name
+		                        FROM
+			                        Location l
+		                        GROUP BY
+			                        Name
+	                        ) lGradeRegion
+		                        ON  lGradeRegion.Name = Coalesce(mGradeRegion.TargoValue, rawdata.GradeRegion) 
 		                    Left Join Mapping mLoadPoint
 			                    On	mLoadPoint.IdMapType = mt.Id
-			                    And	mLoadPoint.ExternalValue = Coalesce(nullif(rawdata.LoadPoint,'UNKNOWN'),rawData.GradeCountry)
-		                    Outer Apply (
-			                    Select Top 1 
-					                    l.Id 
-					                    , l.Name
-			                    From	Location l
-					                    Left Join Port p
-						                    On	p.Id = l.Id
-			                    Where	l.Name = Coalesce(mLoadPoint.TargoValue, nullif(rawdata.LoadPoint,'UNKNOWN'), rawData.GradeCountry)
-			                    Order by p.Kind
+			                    And	mLoadPoint.ExternalValue = Coalesce(nullif(rawdata.LoadPoint,'UNKNOWN'),lGradeCountry.Name, lGradeRegion.name)
+		                    LEFT JOIN  (
+			                    Select 
+				                    min(l.Id) Id 
+				                    , l.Name
+			                    From
+				                    Location l
+				                    Left Join Port p
+					                    On	p.Id = l.Id
+			                    GROUP BY
+				                    l.Name
 		                    ) lLoadPoint
+			                    ON lLoadPoint.Name = Coalesce(mLoadPoint.TargoValue, nullif(rawdata.LoadPoint,'UNKNOWN'),lGradeCountry.Name, lGradeRegion.name)
 		                    Left Join Mapping mofftakePoint
 			                    On	mofftakePoint.IdMapType = mt.Id
 			                    And	mofftakePoint.ExternalValue = rawdata.offtakePoint
-		                    Outer Apply (
-			                    Select Top 1 
-					                    l.Id 
-					                    , l.Name
-			                    From	Location l
-					                    Left Join Port p
-						                    On	p.Id = l.Id
-			                    Where	l.Name = Coalesce(mofftakePoint.TargoValue, rawdata.offtakePoint)
-			                    Order by p.Kind
+		                    LEFT JOIN (
+			                    Select 
+				                    min(l.Id) Id 
+				                    , l.Name
+			                    From
+				                    Location l
+				                    Left Join Port p
+					                    On	p.Id = l.Id
+			                    GROUP BY
+				                    l.Name
 		                    ) lofftakePoint
+			                    ON  lofftakePoint.Name = Coalesce(mofftakePoint.TargoValue, rawdata.offtakePoint)
 		                    Left Join Port pofftakePoint
 			                    On	pofftakePoint.Id = lofftakePoint.Id
 
@@ -528,8 +551,17 @@ namespace DapperCleanData
                 port = ResolveLocation(point, port, area).ToLower();
 
                 terminalId = !string.IsNullOrWhiteSpace(point) ? GetTargoLocationId(point, 2)?.Id : null;
-                portId = GetTargoLocationId(port, 1)?.Id ??
-                         (!string.IsNullOrWhiteSpace(port) ? AddPort(port, 1, _portUnallocated) : null);
+
+                var targoPort = GetTargoLocationId(port, 1);
+
+                portId = null;
+                if (targoPort?.Id == null)
+                {
+                    if(!string.IsNullOrWhiteSpace(port))
+                    {
+                        portId = AddPort(port, 1, _portUnallocated);
+                    }
+                }
             }
             else
             {
@@ -539,13 +571,27 @@ namespace DapperCleanData
                 if (idParent != null)
                     portId = idParent;
                 else
-                    portId = GetTargoLocationId(port, 1)?.Id ??
-                         (!string.IsNullOrWhiteSpace(port) ? AddPort(port, 1, _portUnallocated) : null);
+                {
+                    portId = GetTargoLocationId(port, 1)?.Id;
+                    if (portId == null)
+                    {
+                        if (!string.IsNullOrWhiteSpace(port))
+                        {
+                            portId = AddPort(port, 1, _portUnallocated);
+                        }
+                    }
+                }
+            }
+            int? result = portId;
+            if(terminalId == null)
+            {
+                if (!string.IsNullOrWhiteSpace(point))
+                {
+                    result = AddPort(point, 2, portId);
+                }
             }
 
-            return terminalId ?? (!string.IsNullOrWhiteSpace(point)
-                   ? AddPort(point, 2, portId)
-                   : portId);
+            return result ?? terminalId;
         }
 
         public int? GetLocationIdByRegion(string areaName, string regionName)
@@ -614,7 +660,7 @@ namespace DapperCleanData
 
         public Port GetTargoLocationId(string nameLocation, int kind)
         {
-            var port = PortsList.FirstOrDefault(p => p.Kind == kind && p.Name.ToLower() == nameLocation.ToLower());
+            var port = PortsList.FirstOrDefault(p => p.Name.ToLower() == nameLocation.ToLower());
             return port;
         }
 
@@ -681,7 +727,7 @@ namespace DapperCleanData
             };
             
             string sqlLocation =
-                $"IF (SELECT top 1 Id from [Location] where Name = @name AND Source = @_sourceClipper) IS NULL BEGIN  INSERT INTO [Location] (Name, Source) VALUES (@name,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int) END ELSE (SELECT top 1 Id from [Location] where Name = @name AND Source = @_sourceClipper)";
+                $"IF (SELECT top 1 Id from [Location] where Name = @name) IS NULL BEGIN  INSERT INTO [Location] (Name, Source) VALUES (@name,@_sourceClipper); SELECT CAST(SCOPE_IDENTITY() as int) END ELSE (SELECT top 1 Id from [Location] where Name = @name AND Source = @_sourceClipper)";
             string sqlPort =
                     $"INSERT INTO Port (Id, Kind, IdParent) VALUES (@Id,@Kind,@portParent);";
 
