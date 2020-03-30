@@ -582,16 +582,15 @@ namespace DapperCleanData
                     }
                 }
             }
-            int? result = portId;
             if(terminalId == null)
             {
                 if (!string.IsNullOrWhiteSpace(point))
                 {
-                    result = AddPort(point, 2, portId);
+                    terminalId = AddPort(point, 2, portId);
                 }
             }
 
-            return result ?? terminalId;
+            return terminalId ?? portId;
         }
 
         public int? GetLocationIdByRegion(string areaName, string regionName)
