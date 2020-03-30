@@ -8,7 +8,8 @@ namespace CleanData_UnitTest
     public class CleanDataUnitTest
     {
         #region Constant
-        private const string ConnectionString = "Data Source=LON-PC53;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true";
+        //private const string ConnectionString = "Data Source=LON-PC53;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true";
+        private const string ConnectionString = "Data Source=DESKTOP-B595DUE\\SQLEXPRESS01;Initial Catalog=STG_Targo;Integrated Security=SSPI;MultipleActiveResultSets=true";
         #endregion
 
         #region Test method
